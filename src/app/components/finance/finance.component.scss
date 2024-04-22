@@ -1,0 +1,78 @@
+.ion-page,
+#root,
+body,
+ion-content.background {
+    --background: url(../../../assets/img/fondo1111.svg) no-repeat fixed;
+
+}
+
+.mayusculas {
+    text-transform: capitalize;
+}
+
+.subt {
+    color: #ffff;
+}
+
+.title {
+    color: rgb(255, 255, 255);
+}
+
+.buttonLogin {
+    width: 85%;
+    color: rgb(255, 255, 255);
+    letter-spacing: 0.08rem;
+    display: auto;
+    margin: 0 auto;
+}
+
+//degradado 
+.titulo {
+    font-family: system-ui;
+    color: transparent;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    background-image: linear-gradient(180deg,
+            #ffffff,
+            #ebe8e3);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+
+.cardCenter {
+    width: 90%;
+    display: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.233);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.cardCenter2 {
+    width: 90%;
+    display: auto;
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.233);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+        rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+        rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+/* Estilo para la tabla */
+.full-width-table {
+    background-color: #bdbdbd;
+    color: #000000;
+}
+
+.text-tachado {
+    text-decoration: line-through;
+}

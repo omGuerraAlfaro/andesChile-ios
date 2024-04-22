@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">andesChile</string>
+    <string name="title_activity_main">andesChile</string>
+    <string name="package_name">colegio.andes.chile.app</string>
+    <string name="custom_url_scheme">colegio.andes.chile.app</string>
+</resources>

@@ -1,0 +1,106 @@
+.ion-page,
+#root,
+body,
+ion-content.background {
+    --background: url(../../../assets/img/fondo1111.svg) no-repeat;
+}
+
+#container {
+    text-align: center;
+}
+
+.titulo {
+    color: #FFFFFF;
+}
+
+
+ion-chip {
+    --color: #FFFFFF;
+    /* Texto en blanco para mayor contraste */
+    margin-bottom: 10px;
+    height: 50px;
+    width: 80%;
+    justify-content: center;
+    align-content: center;
+    padding: 20px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    //text-transform: uppercase;
+    color: var(--color);
+    background-color: var(--background);
+    border: 1px solid var(--background);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+    background: rgba(255, 255, 255, 0.233);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.avatar {
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+    .titulo {
+        font-size: 35px;
+        /* Tamaño de letra un poco más pequeño */
+    }
+
+    ion-chip {
+        width: 400px;
+        /* Ancho más ajustado */
+        padding: 15px;
+        /* Relleno ajustado */
+    }
+
+    .avatar {
+        font-size: 22px;
+        /* Ícono ligeramente más pequeño */
+    }
+
+    /* Otros ajustes para tabletas */
+}
+
+/* Estilos para pantallas pequeñas (teléfonos móviles) */
+@media screen and (max-width: 500px) {
+    .titulo {
+        font-size: 25px;
+        /* Tamaño de letra más reducido */
+    }
+
+    ion-chip {
+        width: 350px;
+        /* Ancho más pequeño */
+        padding: 10px;
+    }
+
+    .avatar {
+        font-size: 18px;
+        /* Ícono más pequeño */
+    }
+
+    /* Más ajustes para móviles */
+}
+
+/* Estilos para pantallas muy pequeñas */
+@media screen and (max-width: 120px) {
+    .titulo {
+        font-size: 20px;
+        /* Tamaño de letra aún más pequeño */
+    }
+
+    ion-chip {
+        width: 200px;
+        /* Ancho más compacto */
+        padding: 8px;
+        /* Relleno reducido */
+    }
+
+    .avatar {
+        font-size: 16px;
+        /* Ícono más compacto */
+    }
+
+    /* Ajustes adicionales para dispositivos muy pequeños */
+}

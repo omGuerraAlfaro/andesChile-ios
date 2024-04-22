@@ -1,0 +1,85 @@
+<ion-content class="background">
+  
+  <ion-grid id="container">
+    <h1 class="titulo ion-text-center"><strong>Servicios</strong></h1>
+    <ion-row>
+      <ion-col>
+        <ion-chip (click)="irPagina()">
+          <ion-avatar>
+            <ion-icon name="globe-outline" class="avatar"></ion-icon>
+            <!-- <img src="../../../assets/img/globe-outline.svg" class="avatar"/> -->
+          </ion-avatar>
+          <ion-label>Web Colegio</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col>
+        <ion-chip (click)="irContacto()">
+          <ion-avatar>
+            <ion-icon name="compass-outline" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Contactanos</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col>
+        <ion-chip (click)="irUtiles()">
+          <ion-avatar>
+            <ion-icon name="school-outline" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Utiles Escolares</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col>
+        <ion-chip (click)="irPAE()">
+          <ion-avatar>
+            <ion-icon name="heart-outline" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Conoce nuestro programa PAE</ion-label>
+        </ion-chip>
+      </ion-col>
+
+      <ion-col>
+        <ion-chip (click)="irComunidad()">
+          <ion-avatar>
+            <ion-icon name="people-outline" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Conoce nuestra Misión y Visión</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>  
+
+    <h1 class="titulo ion-text-center"><strong>Redes Sociales</strong></h1>
+    
+    <ion-row>
+      <ion-col>
+        <ion-chip (click)="irInstagram()">
+          <ion-avatar>
+            <ion-icon name="logo-instagram" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Instagram</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip (click)="irFacebook()">
+          <ion-avatar>
+            <ion-icon name="logo-facebook" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>Facebook</ion-label>
+        </ion-chip>
+      </ion-col>
+      <ion-col>
+        <ion-chip (click)="irTikTok()">
+          <ion-avatar>
+            <ion-icon name="logo-tiktok" class="avatar"></ion-icon>
+          </ion-avatar>
+          <ion-label>TikTok</ion-label>
+        </ion-chip>
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+

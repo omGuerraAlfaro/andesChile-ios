@@ -1,0 +1,144 @@
+.ion-page,
+#root,
+body,
+ion-content.background {
+  --background: url(../../../assets/img/fondo1.svg) no-repeat fixed;
+}
+
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+/* animation logo */
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1
+  }
+
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1
+  }
+}
+
+.logo {
+  -webkit-animation: scale-in-center 2s cubic-bezier(.25, .46, .45, .94) both;
+  animation: scale-in-center 2s cubic-bezier(.25, .46, .45, .94) both;
+
+  .svgIgm {
+    width: 400px;
+    height: 400px;
+    margin-top: 10%;
+    margin-bottom: 15%;
+  }
+}
+
+/* animation logo */
+
+ion-item {
+  border-radius: 30px !important;
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  border: 1px solid #ffffff;
+  border-bottom: 0px !important;
+  box-shadow: none !important;
+}
+
+input {
+  background-color: white;
+  border: transparent;
+}
+
+
+.svgIgm {
+  justify-content: center;
+  width: 80%;
+  height: 80%;
+}
+
+.titulo {
+  text-align: center;
+  padding: 0;
+  letter-spacing: 0.5rem;
+  color: #ffffff;
+}
+
+.buttonLogin {
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.08rem;
+}
+
+
+.cardFondo {
+  background-color: rgba(226, 226, 226, 0.747);
+  margin-bottom: 10px;
+}
+
+.popover-app{
+  --width: 80%;
+}
+
+/* Estilos para pantallas hasta 768px */
+@media only screen and (max-width: 768px) {
+  .logo .svgIgm {
+    width: 60%;
+    height: 60%;
+  }
+
+  .titulo {
+    letter-spacing: 0.3rem;
+  }
+
+  .buttonLogin {
+    font-size: 0.9em;
+  }
+}
+
+/* Estilos para pantallas hasta 480px */
+@media only screen and (max-width: 480px) {
+  .logo .svgIgm {
+    width: 50%;
+    height: 50%;
+  }
+
+  .titulo {
+    letter-spacing: 0.2rem;
+    font-size: 0.9em;
+  }
+
+  .buttonLogin {
+    font-size: 0.8em;
+  }
+}
+
+/* Estilos para pantallas hasta 320px */
+@media only screen and (max-width: 320px) {
+  .logo .svgIgm {
+    width: 40%;
+    height: 40%;
+  }
+
+  .titulo {
+    letter-spacing: 0.1rem;
+    font-size: 0.8em;
+  }
+
+  .buttonLogin {
+    font-size: 0.7em;
+  }
+}

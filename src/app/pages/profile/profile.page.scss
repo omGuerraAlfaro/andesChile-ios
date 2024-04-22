@@ -1,0 +1,72 @@
+.ion-page,
+#root,
+body,
+ion-content.background {
+  --background: url(../../../assets/img/fondo6.svg) no-repeat fixed;
+}
+
+ion-header ion-toolbar{
+  margin: auto;
+  padding-top: 0px !important;
+}
+
+.subt {
+  color: #ffff;
+}
+
+.title {
+  color: rgb(255, 255, 255);
+}
+
+.cardCenter {
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.233);
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.mayusculas {
+  text-transform: capitalize;
+}
+
+.separador {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.popover-sugerencias {
+  --width: 85%;
+  margin-top: 100px;
+}
+
+.buttonLogin {
+  color: rgb(255, 255, 255);
+  letter-spacing: 0.08rem;
+  width: 80%;
+  margin: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .popover-sugerencias {
+    --width: 65%;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .popover-sugerencias {
+    --width: 80%;
+    margin-top: 100px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .popover-sugerencias {
+    --width: 75%;
+    margin-top: 100px;
+  }
+}
