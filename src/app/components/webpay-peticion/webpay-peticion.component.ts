@@ -47,7 +47,7 @@ export class WebpayPeticionComponent implements OnInit {
       minimumFractionDigits: 0
     });
     this.numeroFormateado = formatter.format(this.suma);
-    console.log(this.numeroFormateado);
+    // console.log(this.numeroFormateado);
   }
 
   async goPagar(): Promise<void> {
@@ -92,7 +92,7 @@ export class WebpayPeticionComponent implements OnInit {
       return;
     }
 
-    await this.presentAlertOK("Información", `Tu solicitud de pago será revisada por el departamento de finanzas. Ellos confirmarán el pago de las boletas seleccionadas (<b>${this.idBoleta}</b>) y te enviarán un correo con el comprobante de pago a <b>${this.correo}</b> dentro de las próximas 24 horas.`);
+    this.presentAlertConfirm("Pregunta", `¿Estas seguro/a de esta acción?`);
   }
 
   async copiarDatosTransferencia(): Promise<void> {
@@ -117,6 +117,32 @@ export class WebpayPeticionComponent implements OnInit {
     toast.present();
   }
 
+  async presentAlertConfirm(header: string, message: string) {
+    const alert = await this.alertController.create({
+      header,
+      message,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'alert-button-cancel',
+          handler: () => {
+            console.log('Alert Cancelled');
+          },
+        },
+        {
+          text: 'Sí',
+          role: 'confirm',
+          cssClass: 'alert-button-confirm',
+          handler: () => {
+            this.presentAlertOK("Información", `Tu solicitud de pago será revisada por el departamento de finanzas. Ellos confirmarán el pago de las boletas seleccionadas (<b>N° ${this.idBoleta}</b>) por un monto de <b>$ ${this.numeroFormateado}</b> y te enviarán un correo con el comprobante de pago a <b>${this.correo}</b> dentro de las próximas 24 horas.`);
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
+
   async presentAlertOK(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
@@ -124,6 +150,9 @@ export class WebpayPeticionComponent implements OnInit {
       buttons: [
         {
           text: 'Okay',
+          handler: () => {
+            this.router.navigate(["/home"]);
+          },
         },
       ],
     });
