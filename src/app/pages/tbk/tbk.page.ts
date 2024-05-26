@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import { WebpayService } from 'src/app/services/webpay.service';
+import { WebpayService } from 'src/app/services/paymentService/webpay.service';
 import { WebpayRequest } from 'src/interfaces/webpay_request';
 import { WebpayResponse } from 'src/interfaces/webpay_response';
 
