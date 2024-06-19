@@ -65,54 +65,42 @@
   <ion-card class="cardCenter2">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
-        <ng-container *ngIf="student;else loadingSkeleton">
-          <p><b><ion-text class="mayusculas">Asistencia</ion-text></b></p>
+        <ng-container *ngIf="student;else loadingSkeletonTitleChart">
+          <p><b><ion-text class="mayusculas">% Asistencia</ion-text></b></p>
+          <p class="small">Próximamente</p>
         </ng-container>
-        <ng-template #loadingSkeleton>
+        <ng-template #loadingSkeletonTitleChart>
           <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
         </ng-template>
       </h1>
     </div>
 
-    <ng-container *ngIf="student; else imgSkeleton">
-      <ng-container *ngIf="student.genero === 'M'; else femaleStudent">
-        <img src="../../../assets/img/5.png" width="150px" height="150px" class="imgAvatar" />
-      </ng-container>
-      <ng-template #femaleStudent>
-        <ion-content>
-          <canvas #attendanceChart></canvas>
-        </ion-content>
-      </ng-template>
+    <ng-container *ngIf="student; else loadingSkeletonChart">
+      <app-chart [attendanceData]="attendanceData"></app-chart>
     </ng-container>
 
-    <ng-template #imgSkeleton>
-      <ion-skeleton-text animated style="width: 150px; height: 190px; --border-radius: 20px;"></ion-skeleton-text>
+    <ng-template #loadingSkeletonChart>
+      <ion-skeleton-text animated style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
     </ng-template>
   </ion-card>
-  <ion-card class="cardCenter2">
+
+  <ion-card class="cardCenter3">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
-        <ng-container *ngIf="student;else loadingSkeleton">
-          <p><b><ion-text class="mayusculas">Asistencia</ion-text></b></p>
+        <ng-container *ngIf="student;else loadingSkeleton3">
+          <p><b><ion-text class="mayusculas">Certificados</ion-text></b></p>
         </ng-container>
-        <ng-template #loadingSkeleton>
+        <ng-template #loadingSkeleton3>
           <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
         </ng-template>
       </h1>
     </div>
 
-    <ng-container *ngIf="student; else imgSkeleton">
-      <ng-container *ngIf="student.genero === 'M'; else femaleStudent">
-        <img src="../../../assets/img/5.png" width="150px" height="150px" class="imgAvatar" />
+    <ng-container *ngIf="student; else imgSkeleton2">
+      <ion-button class="buttonCertificado" color="light" expand="full" shape="round" (click)="working()">Certificado Alumno Regular</ion-button>
       </ng-container>
-      <ng-template #femaleStudent>
-        <ion-content>
-          <canvas #attendanceChart></canvas>
-        </ion-content>
-      </ng-template>
-    </ng-container>
 
-    <ng-template #imgSkeleton>
+    <ng-template #imgSkeleton2>
       <ion-skeleton-text animated style="width: 150px; height: 190px; --border-radius: 20px;"></ion-skeleton-text>
     </ng-template>
   </ion-card>

@@ -5,6 +5,7 @@ import { ServiciosComponent } from 'src/app/components/servicios/servicios.compo
 import { HomePage } from './home.page';
 import { ProfilePage } from 'src/app/pages/profile/profile.page';
 import { ProfileStudentComponent } from 'src/app/components/profile-student/profile-student.component';
+import { UserConfigurationComponent } from 'src/app/components/user-configuration/user-configuration.component';
 
 const routes: Routes = [
   {
@@ -22,13 +23,13 @@ const routes: Routes = [
           {
             path: 'student/:id',
             component: ProfileStudentComponent,
-          }
+          },
         ]
       },
       {
         path: 'service',
         component: ServiciosComponent
-      },
+      }
     ]
   }
 ];
