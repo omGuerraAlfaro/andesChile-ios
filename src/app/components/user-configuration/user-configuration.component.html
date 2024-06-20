@@ -66,47 +66,47 @@
         <ion-content class="ion-padding">
           <ion-list *ngIf="editData">
             <ion-item>
-              <ion-label>Primer Nombre</ion-label>
-              <ion-input [(ngModel)]="editData.primer_nombre"></ion-input>
+              <ion-label>Primer Nombre: </ion-label>
+              <ion-input disabled [(ngModel)]="editData.primer_nombre"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Segundo Nombre</ion-label>
+              <ion-label>Segundo Nombre: </ion-label>
               <ion-input [(ngModel)]="editData.segundo_nombre"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Primer Apellido</ion-label>
-              <ion-input [(ngModel)]="editData.primer_apellido"></ion-input>
+              <ion-label>Primer Apellido: </ion-label>
+              <ion-input disabled [(ngModel)]="editData.primer_apellido"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Segundo Apellido</ion-label>
+              <ion-label>Segundo Apellido:</ion-label>
               <ion-input [(ngModel)]="editData.segundo_apellido"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Fecha de Nacimiento</ion-label>
+              <ion-label>Fecha de Nacimiento:</ion-label>
               <ion-datetime [(ngModel)]="editData.fecha_nacimiento"></ion-datetime>
             </ion-item>
             <ion-item>
-              <ion-label>Teléfono</ion-label>
+              <ion-label>Teléfono:</ion-label>
               <ion-input [(ngModel)]="editData.telefono"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Correo Electrónico</ion-label>
+              <ion-label>Correo Electrónico:</ion-label>
               <ion-input [(ngModel)]="editData.correo_electronico"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Estado Civil</ion-label>
+              <ion-label>Estado Civil:</ion-label>
               <ion-input [(ngModel)]="editData.estado_civil"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Nacionalidad</ion-label>
+              <ion-label>Nacionalidad:</ion-label>
               <ion-input [(ngModel)]="editData.nacionalidad"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Actividad</ion-label>
+              <ion-label>Actividad:</ion-label>
               <ion-input [(ngModel)]="editData.actividad"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Escolaridad</ion-label>
+              <ion-label>Escolaridad: </ion-label>
               <ion-input [(ngModel)]="editData.escolaridad"></ion-input>
             </ion-item>
           </ion-list>
@@ -114,7 +114,6 @@
       </ng-template>
     </ion-modal>
 
-    <!-- Modal para cambiar contraseña -->
     <ion-modal #passwordModal (willDismiss)="onWillDismissPassword($event)">
       <ng-template>
         <ion-header>
@@ -130,6 +129,15 @@
         </ion-header>
         <ion-content class="ion-padding">
           <ion-list>
+            <ion-item>
+              <ion-label>Actual Contraseña</ion-label>
+              <ion-input type="password" [(ngModel)]="oldPassword"></ion-input>
+            </ion-item>
+            <ion-item lines="none" class="note-item">
+              <ion-label>
+                <p class="note"><b>Nota:</b> La nueva contraseña debe contener letras y números y un minimo de 8 caracteres.</p>
+              </ion-label>
+            </ion-item>
             <ion-item>
               <ion-label>Nueva Contraseña</ion-label>
               <ion-input type="password" [(ngModel)]="newPassword"></ion-input>
