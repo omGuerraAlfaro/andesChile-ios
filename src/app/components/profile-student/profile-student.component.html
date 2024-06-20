@@ -40,7 +40,7 @@
             <div><b>Rut:</b> {{ student.rut | rutFormat}}-{{ student.dv }}</div>
             <div><b>Fecha Nacimiento:</b> {{ student.fecha_nacimiento | date: 'dd MMMM yyyy' }}</div>
             <!-- <div><b>Alergico a:</b> {{ student.alergico }}</div> -->
-            <div><b>Telefono de Contacto:</b> {{ student.telefono_contacto }}</div>
+            <div><b>Telefono de Contacto:</b> +56 {{ student.telefono_contacto }}</div>
           </ng-container>
 
         </div>
@@ -97,7 +97,7 @@
     </div>
 
     <ng-container *ngIf="student; else imgSkeleton2">
-      <ion-button class="buttonCertificado" color="light" expand="full" shape="round" (click)="working()">Certificado Alumno Regular</ion-button>
+      <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round" (click)="working()">Certificado Alumno Regular</ion-button>
       </ng-container>
 
     <ng-template #imgSkeleton2>

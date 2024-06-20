@@ -26,7 +26,7 @@ export class InfoApoderadoService {
   }
 
   getInfoApoderadoAlone(rut: any): Observable<IApoderadoAlone> {
-    return this.http.get<IApoderadoAlone>(`${environment.api}/apoderado/${rut}`, this.httpOptions)
+    return this.http.get<IApoderadoAlone>(`${environment.api}/apoderado/rut/${rut}`, this.httpOptions)
       .pipe(
         catchError(this.handleError)
       );

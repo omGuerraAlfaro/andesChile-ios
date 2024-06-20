@@ -47,6 +47,9 @@ export class UserConfigurationComponent implements OnInit {
     });
   }
 
+  formatRut(rut: string): string {
+    return rut.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
   openEditModal() {
     this.editModal.present();
   }
@@ -113,10 +116,6 @@ export class UserConfigurationComponent implements OnInit {
     if (ev.detail.role === 'confirm' && ev.detail.data) {
       const { newPassword, confirmPassword, oldPassword } = ev.detail.data;
 
-      console.log(oldPassword);
-      console.log(newPassword);
-      console.log(confirmPassword);
-
       if (newPassword === confirmPassword) {
         const rut = this.userData?.rut;
         if (rut) {
@@ -125,7 +124,7 @@ export class UserConfigurationComponent implements OnInit {
           this.apoderadoService.getUser(rut).subscribe({
             next: (users: IUser[]) => {
               if (users.length > 0) {
-                const user = users[0]; // Tomar el primer usuario del array
+                const user = users[0];
                 console.log('Usuario encontrado:', user);
 
                 if (user.id !== undefined) {

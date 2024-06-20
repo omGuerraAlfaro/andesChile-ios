@@ -7,47 +7,79 @@
       <ion-card-content>
         <ion-list>
           <ion-item>
-            <ion-label>Nombre</ion-label>
-            <ion-text>{{ userData.primer_nombre }} {{ userData.segundo_nombre }} {{ userData.primer_apellido }} {{ userData.segundo_apellido }}</ion-text>
+            <ion-label position="floating"><b>Nombre</b></ion-label>
+            <br>
+            <br>
+            <ion-text>{{ userData.primer_nombre }} {{ userData.segundo_nombre }} {{ userData.primer_apellido }} {{
+              userData.segundo_apellido }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Fecha de Nacimiento</ion-label>
+            <ion-label position="floating"><b>Fecha de Nacimiento</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.fecha_nacimiento | date }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>RUT</ion-label>
-            <ion-text>{{ userData.rut }}-{{ userData.dv }}</ion-text>
+            <ion-label position="floating"><b>RUT</b></ion-label>
+            <br>
+            <br>
+            <ion-text>{{ formatRut(userData.rut) }}-{{ userData.dv }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Teléfono</ion-label>
+            <ion-label position="floating"><b>Teléfono</b></ion-label>
+            <br>
+            <br>
             <ion-text>+56 {{ userData.telefono }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Correo Electrónico</ion-label>
+            <ion-label position="floating"><b>Correo Electrónico</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.correo_electronico }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Estado Civil</ion-label>
+            <ion-label position="floating"><b>Estado Civil</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.estado_civil }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Nacionalidad</ion-label>
+            <ion-label position="floating"><b>Nacionalidad</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.nacionalidad }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Actividad</ion-label>
+            <ion-label position="floating"><b>Actividad</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.actividad }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label>Escolaridad</ion-label>
+            <ion-label position="floating"><b>Escolaridad</b></ion-label>
+            <br>
+            <br>
             <ion-text>{{ userData.escolaridad }}</ion-text>
           </ion-item>
         </ion-list>
       </ion-card-content>
     </ion-card>
-
-    <ion-button class="buttonLogin" id="open-modal-edit" expand="full" color="primary" shape="round" (click)="openEditModal()">Editar Información Personal</ion-button>
-    <ion-button class="buttonLogin mt-3" id="open-modal-password" expand="full" color="danger" shape="round" (click)="openPasswordModal()">Cambiar Contraseña</ion-button>
+    <ion-card class="note-card">
+      <ion-item lines="none" class="note-item">
+        <ion-label>
+          <p class="note">
+            <b>Nota Importante:</b> Es crucial que estos datos estén siempre actualizados, ya que son necesarios para la
+            correcta generación de documentos y certificados. <br>
+            <b>Privacidad:</b> Los datos proporcionados se mantendrán confidenciales. <br>
+            <b>Responsabilidad:</b> Es responsabilidad del usuario ingresar y mantener estos datos correctamente.
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-card>
+    <ion-button class="buttonLogin" id="open-modal-edit" expand="full" color="primary" shape="round"
+      (click)="openEditModal()">Editar Información Personal</ion-button>
+    <ion-button class="buttonLogin mt-3 mb-5" id="open-modal-password" expand="full" color="danger" shape="round"
+      (click)="openPasswordModal()">Cambiar Contraseña</ion-button>
 
     <!-- Modal para editar información personal -->
     <ion-modal #editModal (willDismiss)="onWillDismiss($event)">
@@ -82,8 +114,12 @@
               <ion-input [(ngModel)]="editData.segundo_apellido"></ion-input>
             </ion-item>
             <ion-item>
-              <ion-label>Fecha de Nacimiento:</ion-label>
-              <ion-datetime [(ngModel)]="editData.fecha_nacimiento"></ion-datetime>
+              <ion-label position="floating">Fecha de Nacimiento:</ion-label>
+              <div class="datetime-container">
+                <ion-datetime display-format="DD MMM YYYY" picker-format="DD MMM YYYY" presentation="date"
+                  [(ngModel)]="editData.fecha_nacimiento">
+                </ion-datetime>
+              </div>
             </ion-item>
             <ion-item>
               <ion-label>Teléfono:</ion-label>
@@ -135,7 +171,8 @@
             </ion-item>
             <ion-item lines="none" class="note-item">
               <ion-label>
-                <p class="note"><b>Nota:</b> La nueva contraseña debe contener letras y números y un minimo de 8 caracteres.</p>
+                <p class="note"><b>Nota:</b> La nueva contraseña debe contener letras y números y un minimo de 8
+                  caracteres.</p>
               </ion-label>
             </ion-item>
             <ion-item>
