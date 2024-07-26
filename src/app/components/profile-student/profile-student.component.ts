@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController, MenuController } from '@ionic/angular';
+import { AlertController, MenuController, IonModal } from '@ionic/angular';
 import { EstudianteService } from 'src/app/services/estudianteService/estudiante.service';
+import { IAnotaciones } from 'src/interfaces/AnotacionInterface';
 import { IEstudiante } from 'src/interfaces/apoderadoInterface';
 
 @Component({
@@ -11,10 +12,16 @@ import { IEstudiante } from 'src/interfaces/apoderadoInterface';
 })
 export class ProfileStudentComponent implements OnInit {
   @ViewChild('popover') popover: any;
+  @ViewChild('modal', { static: true }) modal!: IonModal;
+  @ViewChild('detailModal', { static: true }) detailModal!: IonModal;
+
   isOpen = false;
   public attendanceData: number[] = [];  // Inicializar con un array vacío
+  presentingElement: Element | null = null;
 
   student: IEstudiante | null = null;
+  anotaciones: IAnotaciones[] = [];
+  selectedAnotacion: IAnotaciones | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -40,18 +47,40 @@ export class ProfileStudentComponent implements OnInit {
       }
     });
     this.menuCtrl.enable(true);
+    this.presentingElement = document.querySelector('.ion-page');
   }
 
-  // getAttendanceData(rut: string) {
-  //   this.estudianteService.getAsistenciaEstudiante(rut).subscribe({
-  //     next: (data: { porcentajeAsistencia: number, porcentajeInasistencia: number }) => {
-  //       this.attendanceData = [data.porcentajeAsistencia, data.porcentajeInasistencia];
-  //     },
-  //     error: (error) => {
-  //       console.error('Error al obtener los datos de asistencia:', error);
-  //     }
-  //   });
-  // }
+  getAnotacionesEstudiante(id: any): void {
+    this.estudianteService.getAnotacionesEstudiante(id).subscribe({
+      next: (dataAnotaciones: IAnotaciones[]) => {
+        this.anotaciones = dataAnotaciones;
+      },
+      error: (error) => {
+        console.error('Error al obtener las anotaciones del estudiante:', error);
+      }
+    });
+  }
+
+  openModalAnotaciones() {
+    if (this.student) {
+      this.getAnotacionesEstudiante(this.student.id);
+    }
+    this.modal.present();
+  }
+
+  closeModal() {
+    this.modal.dismiss();
+  }
+
+  openDetailModal(anotacion: IAnotaciones) {
+    this.selectedAnotacion = anotacion;
+    this.detailModal.present();
+  }
+
+  closeDetailModal() {
+    this.detailModal.dismiss();
+    this.selectedAnotacion = null;
+  }
 
   presentPopover(e: Event) {
     this.popover.event = e;
@@ -61,7 +90,6 @@ export class ProfileStudentComponent implements OnInit {
   working() {
     this.presentAlertWorking("Funcionalidad en Desarrollo", "Disculpa las molestias pero pronto habilitaremos esta funcionalidad.");
   }
-
 
   async presentAlertWorking(header: string, message: string) {
     const alert = await this.alertController.create({
@@ -82,3 +110,16 @@ export class ProfileStudentComponent implements OnInit {
     await alert.present();
   }
 }
+
+
+// getAttendanceData(rut: string) {
+//   this.estudianteService.getAsistenciaEstudiante(rut).subscribe({
+//     next: (data: { porcentajeAsistencia: number, porcentajeInasistencia: number }) => {
+//       this.attendanceData = [data.porcentajeAsistencia, data.porcentajeInasistencia];
+//     },
+//     error: (error) => {
+//       console.error('Error al obtener los datos de asistencia:', error);
+//     }
+//   });
+// }
+

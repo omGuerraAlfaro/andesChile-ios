@@ -34,7 +34,7 @@ export class ServiciosComponent implements OnInit {
   };
 
   async irComunidad() {
-    await Browser.open({ url: 'https://colegioandeschile.cl/comunidad/' });
+    await Browser.open({ url: 'https://colegioandeschile.cl/mision-vision/' });
   };
 
   async irInstagram() {
