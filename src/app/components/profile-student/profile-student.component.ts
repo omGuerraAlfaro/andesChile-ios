@@ -16,7 +16,7 @@ export class ProfileStudentComponent implements OnInit {
   @ViewChild('detailModal', { static: true }) detailModal!: IonModal;
 
   isOpen = false;
-  public attendanceData: number[] = [];  // Inicializar con un array vacío
+  public attendanceData: number[] = [];
   presentingElement: Element | null = null;
 
   student: IEstudiante | null = null;

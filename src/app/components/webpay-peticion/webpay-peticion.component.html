@@ -1,3 +1,10 @@
+<!-- <ion-header *ngIf="isLoading">
+  <ion-toolbar >
+    <ion-title>Procesando Pago</ion-title>
+    <ion-progress-bar type="indeterminate" color="danger"></ion-progress-bar>
+  </ion-toolbar>
+</ion-header> -->
+
 <ion-content class="background">
   <h1 class="titulo ion-text-center"><strong>Información de pago</strong></h1>
   <table class="ion-text-center table">
@@ -39,11 +46,11 @@
   <ng-container *ngIf="metodoPago === 'webpay'">
     <img src="../../../assets/img/webpay.png" class="imgWebPay">
     <br>
-    <ion-button class="buttonPay" (click)="goPagar()" color="light" expand="full" shape="round">Ir a Pagar</ion-button>
+    <ion-button class="buttonPay" (click)="goPagar()" [disabled]="isLoading" color="light" expand="full"
+      shape="round">Ir a Pagar</ion-button>
   </ng-container>
 
   <ng-container *ngIf="metodoPago === 'transferencia'">
-
     <ion-card class="note-card">
       <ion-item lines="none" class="note-item">
         <ion-label>
@@ -87,11 +94,10 @@
       </ion-card-content>
     </ion-card>
 
-    <ion-button class="buttonCopy" (click)="copiarDatosTransferencia()" color="light" expand="full"
-      shape="round">Copiar Datos de Transferencia</ion-button>
+    <ion-button class="buttonCopy" (click)="copiarDatosTransferencia()" color="light" expand="full" shape="round">Copiar
+      Datos de Transferencia</ion-button>
     <br>
-    <ion-button class="buttonPay mb-5" (click)="goPagar()" color="primary" expand="full" shape="round">Iniciar Confirmación de Transferencia</ion-button>
+    <ion-button class="buttonPay mb-5" (click)="goPagar()" [disabled]="isLoading" color="primary" expand="full"
+      shape="round">Iniciar Confirmación de Transferencia</ion-button>
   </ng-container>
-
-
 </ion-content>

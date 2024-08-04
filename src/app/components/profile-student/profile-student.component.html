@@ -213,10 +213,14 @@
         <div *ngIf="selectedAnotacion">
           <p><strong>Descripción:</strong> {{ selectedAnotacion.anotacion_descripcion }}</p>
           <p><strong>Fecha:</strong> {{ selectedAnotacion.fecha_ingreso | date: 'dd MMM yyyy' }}</p>
+          <div *ngIf="selectedAnotacion.asignatura">
+            <p><strong>Asignatura:</strong> {{ selectedAnotacion.asignatura.nombre_asignatura }}</p>
+          </div>
         </div>
       </ion-content>
     </ng-template>
   </ion-modal>
+  
 
 
 

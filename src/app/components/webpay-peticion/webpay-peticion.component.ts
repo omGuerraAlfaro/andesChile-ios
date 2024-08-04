@@ -18,6 +18,7 @@ export class WebpayPeticionComponent implements OnInit {
   numeroFormateado: string = '';
   metodoPago: string = 'transferencia';
   correo: string = '';
+  isLoading: boolean = false;
 
   constructor(
     private webpayService: WebpayService,
@@ -30,8 +31,6 @@ export class WebpayPeticionComponent implements OnInit {
       const navigation = this.router.getCurrentNavigation();
       if (navigation && navigation.extras.state) {
         this.dataPago = navigation.extras.state['dataPago'];
-        // console.log(this.dataPago);
-
         this.idBoleta = this.dataPago.map(item => item.id).join('-');
       } else {
         this.router.navigate(["/home/finance"]);
@@ -47,15 +46,16 @@ export class WebpayPeticionComponent implements OnInit {
       minimumFractionDigits: 0
     });
     this.numeroFormateado = formatter.format(this.suma);
-    // console.log(this.numeroFormateado);
   }
 
   async goPagar(): Promise<void> {
+    this.isLoading = true;
     if (this.metodoPago === 'webpay') {
       await this.pagarConWebpay();
     } else if (this.metodoPago === 'transferencia') {
       await this.pagarConTransferencia();
     }
+    this.isLoading = false;
   }
 
   async pagarConWebpay(): Promise<void> {
@@ -176,8 +176,6 @@ export class WebpayPeticionComponent implements OnInit {
     toast.present();
   }
 
-
-
   async presentAlertOK(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
@@ -194,5 +192,4 @@ export class WebpayPeticionComponent implements OnInit {
     alert.message = message;
     await alert.present();
   }
-
 }

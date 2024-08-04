@@ -1,3 +1,5 @@
+import { IAsignatura } from "./AsignaturaInterface";
+
 export interface IAnotaciones{
     id: number;
     anotacion_titulo: string;
@@ -6,4 +8,5 @@ export interface IAnotaciones{
     es_positiva: boolean;
     es_negativa: boolean;
     anotacion_estado: boolean;
+    asignatura: IAsignatura;
 }
