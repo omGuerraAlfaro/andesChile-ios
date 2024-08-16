@@ -177,7 +177,7 @@
           <ion-item *ngFor="let anotacion of anotaciones" lines="full" (click)="openDetailModal(anotacion)">
             <ion-avatar slot="start">
               <ion-img
-                [src]="anotacion.es_positiva ? 'assets/img/check-avatar.png' : 'assets/img/cross-avatar.png'"></ion-img>
+                [src]="anotacion.es_positiva ? 'assets/img/check-avatar.png' : (anotacion.es_negativa ? 'assets/img/cross-avatar.png' : 'assets/img/neutro.png')"></ion-img>
             </ion-avatar>
             <ion-label class="anotacion-content">
               <div>
@@ -220,7 +220,7 @@
       </ion-content>
     </ng-template>
   </ion-modal>
-  
+
 
 
 
