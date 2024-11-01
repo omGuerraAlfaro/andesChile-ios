@@ -2,7 +2,7 @@
 #root,
 body,
 ion-content.background {
-  --background: url(../../../assets/img/fondo1.svg) no-repeat fixed;
+  --background: url(../../../assets/img/fondito2.svg) no-repeat fixed;
 }
 
 
@@ -76,11 +76,21 @@ input {
   padding: 0;
   letter-spacing: 0.5rem;
   color: #ffffff;
+  font-size: xx-large;
+  font-weight: 900;
+  text-shadow: 
+    -1px -1px 0px black,  
+     1px -1px 0px black,
+    -1px  1px 0px black,
+     1px  1px 0px black; /* Crea un borde negro alrededor del texto */
 }
+
 
 .buttonLogin {
   color: rgb(255, 255, 255);
   letter-spacing: 0.08rem;
+  width: 80%;
+  height: 50px;
 }
 
 
@@ -96,10 +106,11 @@ input {
 /* Estilos para pantallas hasta 768px */
 @media only screen and (max-width: 768px) {
   .logo .svgIgm {
+    margin-top: 180px;
     width: 60%;
     height: 60%;
   }
-
+  
   .titulo {
     letter-spacing: 0.3rem;
   }
@@ -112,15 +123,18 @@ input {
 /* Estilos para pantallas hasta 480px */
 @media only screen and (max-width: 480px) {
   .logo .svgIgm {
+    margin-top: 180px;
     width: 50%;
     height: 50%;
   }
-
+  
   .titulo {
     letter-spacing: 0.2rem;
     font-size: 0.9em;
+    font-size: xx-large;
+    font-weight: 900;
   }
-
+  
   .buttonLogin {
     font-size: 0.8em;
   }
@@ -129,6 +143,7 @@ input {
 /* Estilos para pantallas hasta 320px */
 @media only screen and (max-width: 320px) {
   .logo .svgIgm {
+    margin-top: 180px;
     width: 40%;
     height: 40%;
   }
@@ -136,9 +151,57 @@ input {
   .titulo {
     letter-spacing: 0.1rem;
     font-size: 0.8em;
+    font-size: large;
+    font-weight: 900;
   }
 
   .buttonLogin {
     font-size: 0.7em;
   }
+}
+/* Estilos generales para todos los botones personalizados */
+.custom-button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Botón de Iniciar Sesión (Rojo) */
+.red-button {
+  background-color: #ff4444; /* color rojo */
+}
+
+.red-button:hover {
+  background-color: #ff6666; /* más claro al hacer hover */
+}
+
+/* Botón de Sobre la APP (Azul) */
+.blue-button {
+  background-color: #007bff; /* color azul */
+}
+
+.blue-button:hover {
+  background-color: #66aaff; /* más claro al hacer hover */
+}
+
+/* Efecto de clic en el botón */
+.custom-button:active {
+  transform: scale(0.98);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo de enfoque para accesibilidad */
+.custom-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px rgba(255, 182, 77, 0.6);
 }

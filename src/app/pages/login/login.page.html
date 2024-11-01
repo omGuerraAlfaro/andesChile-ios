@@ -1,38 +1,50 @@
 <ion-content [fullscreen]="true" scroll-x="false" class="background">
+  <!-- Static content outside the modals -->
   <div class="logo ion-text-center">
-    <img class="svgIgm" src="../../../assets/img/logoColegio.png" />
+    <img class="svgIgm" src="../../../assets/img/superlogo.png" />
   </div>
   <h1 class="titulo"><b>¡Educando con Amor ❤️!</b></h1>
   <br>
-  <h1 class="titulo"><b>¡Bienvenido!</b></h1>
-  <ion-card class="cardFondo">
-    <ion-card-content>
+  <!-- Botón de Iniciar Sesión -->
+  <button id="open-login-modal" class="custom-button red-button">Iniciar Sesión</button>
 
-      <ion-item lines="none">
-        <ion-input placeholder="Ingresa tu usuario aquí" type="text" [(ngModel)]="user.usuario"></ion-input>
-      </ion-item>
+  <button class="buttonLogin" (click)="recuperar()" class="custom-button blue-button">Recuperar Contraseña</button>
+  <!-- Botón de Sobre la APP -->
+  <button id="open-about-modal" class="custom-button blue-button">Sobre la APP</button>
 
-      <ion-item lines="none">
-        <ion-input placeholder="Ingresa tu contraseña aquí" type="password"
-          [(ngModel)]="user.password" minlength="8" maxlength="6"></ion-input>
-      </ion-item>
+  <p class="text-center">Versión 2.0</p>
 
-      <ion-row>
-        <ion-col>
-          <ion-button class="buttonLogin" (click)="ingresar()" expand="full" color="primary" shape="round">Iniciar
-            Sesión</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button class="buttonLogin" (click)="recuperar()" color="light" expand="full" shape="round">Recuperar
-            Contraseña</ion-button>
-        </ion-col>
 
-      </ion-row>
-    </ion-card-content>
-  </ion-card>
+  <!-- Modal containing only the login form -->
+  <ion-modal trigger="open-login-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5, 1]">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-card-header>
+          <ion-card-title>Inicio de Sesión</ion-card-title>
+        </ion-card-header>
+        <ion-card class="cardFondo">
+          <ion-card-content>
+            <ion-item lines="none">
+              <ion-input placeholder="Ingresa tu usuario aquí" type="text" [(ngModel)]="user.usuario"></ion-input>
+            </ion-item>
+            <ion-item lines="none">
+              <ion-input placeholder="Ingresa tu contraseña aquí" type="password" [(ngModel)]="user.password"
+                minlength="8" maxlength="6"></ion-input>
+            </ion-item>
 
-  <ion-button class="buttonLogin" color="light" expand="full" shape="round" (click)="presentPopover($event)">Sobre la APP</ion-button>
-  <ion-popover side="top" alignment="center" class="popover-app" #popover [isOpen]="isOpen" (didDismiss)="isOpen = false">
+            <ion-row>
+              <ion-col>
+                <button class="buttonLogin" (click)="ingresar()" class="custom-button red-button">Iniciar Sesión</button>
+              </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal for "Sobre la APP" information -->
+  <ion-modal trigger="open-about-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5, 1]">
     <ng-template>
       <ion-content class="ion-padding">
         <ion-card>
@@ -40,12 +52,13 @@
             <ion-card-title>Información</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <p>Esta aplicación es desarrollada por el equipo de desarrollo <b>Colegio Andes Chile &reg;</b> con el fin de facilitar el acceso a los padres la información de nuestros estudiantes.</p>
+            <p>Esta aplicación es desarrollada por el equipo de desarrollo <b>Colegio Andes Chile &reg;</b> con el fin
+              de facilitar el acceso a los padres la información de nuestros estudiantes.</p>
             <p>Para más información y/o informe de problemas, contactar con el equipo de desarrollo.</p>
             <p>Whatsapp desarrollador: <b>+569 37673730</b></p>
           </ion-card-content>
         </ion-card>
       </ion-content>
     </ng-template>
-  </ion-popover>
+  </ion-modal>
 </ion-content>

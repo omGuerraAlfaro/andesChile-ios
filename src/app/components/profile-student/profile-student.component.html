@@ -102,6 +102,9 @@
       <app-chart [attendanceData]="attendanceData"></app-chart>
     </ng-container>
 
+    <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round"
+        (click)="working()">Ver Asistencia</ion-button>
+
     <ng-template #loadingSkeletonChart>
       <ion-skeleton-text animated
         style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
@@ -131,7 +134,7 @@
   </ion-card>
 
   <div style="margin-top: 8px;">
-    <ion-button class="buttonLogin" color="light" expand="full" shape="round" (click)="presentPopover($event)">¡Tu
+    <ion-button class="buttonLogin my-5 px-5" color="light" expand="full" shape="round" (click)="presentPopover($event)">¡Tu
       opinión nos
       importa!</ion-button>
     <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" triggerAction="click" side="top"
