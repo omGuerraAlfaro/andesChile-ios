@@ -55,16 +55,16 @@ export interface EstudianteConBoletas {
 
 export interface IApoderadoAlone {
     id: number;
-    primer_nombre: string;
-    segundo_nombre: string;
-    primer_apellido: string;
-    segundo_apellido: string;
+    primer_nombre_apoderado: string;
+    segundo_nombre_apoderado: string;
+    primer_apellido_apoderado: string;
+    segundo_apellido_apoderado: string;
     fecha_nacimiento: Date;
-    telefono: string;
-    correo_electronico: string;
+    telefono_apoderado: string;
+    correo_apoderado: string;
     estado_civil: string;
     nacionalidad: string;
-    actividad: string;
+    profesion_oficio: string;
     escolaridad: string;
     rut: string;
     dv: string;
