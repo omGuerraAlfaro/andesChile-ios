@@ -4,7 +4,7 @@
       <h1 class="title text1 ion-text-center">
         <ng-container *ngIf="student; else loadingSkeleton">
           <!-- <p><b>Nombre Estudiante</b></p> -->
-          <p><b><ion-text class="mayusculas">{{ student.primer_nombre }} {{ student.primer_apellido }}</ion-text></b>
+          <p><b><ion-text class="mayusculas">{{ student.primer_nombre_alumno }} {{ student.primer_apellido_alumno }}</ion-text></b>
           </p>
         </ng-container>
         <ng-template #loadingSkeleton>
@@ -14,7 +14,7 @@
     </div>
 
     <ng-container *ngIf="student; else imgSkeleton">
-      <ng-container *ngIf="student.genero === 'M'; else femaleStudent">
+      <ng-container *ngIf="student.genero_alumno === 'M'; else femaleStudent">
         <img src="../../../assets/img/5.png" width="150px" height="150px" class="imgAvatar" />
       </ng-container>
       <ng-template #femaleStudent>
@@ -35,12 +35,12 @@
         <div class="ion-padding" slot="content" style="text-align: left;">
 
           <ng-container *ngIf="student; else dataSkeleton">
-            <div><b>Nombre Completo:</b> {{ student.primer_nombre }} {{ student.segundo_nombre }} {{
-              student.primer_apellido }} {{ student.segundo_apellido }}</div>
+            <div><b>Nombre:</b> {{ student.primer_nombre_alumno }} {{ student.segundo_nombre_alumno }} {{
+              student.primer_apellido_alumno }} {{ student.segundo_apellido_alumno }}</div>
             <div><b>Rut:</b> {{ student.rut | rutFormat}}-{{ student.dv }}</div>
-            <div><b>Fecha Nacimiento:</b> {{ student.fecha_nacimiento | date: 'dd MMMM yyyy' }}</div>
+            <div><b>Fecha Nacimiento:</b> {{ student.fecha_nacimiento_alumno | date: 'dd MMMM yyyy' }}</div>
             <!-- <div><b>Alergico a:</b> {{ student.alergico }}</div> -->
-            <div><b>Telefono de Contacto:</b> +56 {{ student.telefono_contacto }}</div>
+            <!-- <div><b>Telefono de Contacto:</b> +56 {{ student.telefono_contacto }}</div> -->
           </ng-container>
 
         </div>
