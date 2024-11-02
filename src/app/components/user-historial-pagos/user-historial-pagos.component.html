@@ -1,0 +1,41 @@
+<ion-content class="background">
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Historial de Pagos</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+  <ng-container *ngIf="isDataLoaded; else loading">
+    <ion-card *ngFor="let item of userData.boletas">
+      <ion-card-header>
+        <ion-card-title>Boleta ID: {{ item.boleta.id }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-item>
+          <ion-label>
+            <h3>Detalle: {{ item.boleta.detalle }}</h3>
+            <p>Estado: {{ item.boleta.estado_id === 2 || item.boleta.estado_id === 5 ? 'Pagada' : 'Pendiente' }}</p>
+            <p>Estudiante: {{ getFullName(item.estudiante) }}</p>
+            <p>Curso: {{ getCurso(item.estudiante) }}</p>
+          </ion-label>
+        </ion-item>
+        <ion-list *ngFor="let trans of item.transacciones">
+          <ion-item>
+            <ion-label>
+              <p>Monto: {{ trans.monto | currency:'CLP' }}</p>
+              <p>Método de Pago: {{ trans.metodo_pago }}</p>
+              <p>Fecha de Pago: {{ trans.fecha_creacion | date:'medium' }}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+
+  <ng-template #loading>
+    <ion-card>
+      <ion-card-content>
+        <p>Cargando datos...</p>
+      </ion-card-content>
+    </ion-card>
+  </ng-template>
+</ion-content>

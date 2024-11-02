@@ -71,10 +71,18 @@ export class HomePage implements OnInit {
   working() {
     this.presentAlertWorking("Funcionalidad en Desarrollo", "Disculpa las molestias pero pronto habilitaremos esta funcionalidad.");
   }
+  
   goConfigurationUsser() {
     const rut = localStorage.getItem('rutApoderado');
     if (rut) {
       this.router.navigate(['configuration/user/' + rut]);
+    }
+  }
+
+  goHistorialUser() {
+    const rut = localStorage.getItem('rutApoderado');
+    if (rut) {
+      this.router.navigate(['configuration/user/historial-pagos/' + rut]);
     }
   }
 

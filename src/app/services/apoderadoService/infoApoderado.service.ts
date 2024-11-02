@@ -38,6 +38,13 @@ export class InfoApoderadoService {
       );
   }
 
+  getInfoBoletasHistorialApoderado(rut: any): Observable<any> {
+    return this.http.get<any>(`${environment.api}/boleta/apoderado-historial-pago/${rut}`, this.httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
   getUser(rut: string): Observable<IUser[]> {
     return this.http.get<IUser[]>(`${environment.api}/usuarios/rut/${rut}`, this.httpOptions)
       .pipe(
