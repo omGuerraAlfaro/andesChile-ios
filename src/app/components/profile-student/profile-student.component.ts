@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { AlertController, MenuController, IonModal } from '@ionic/angular';
+import { AlertController, MenuController, IonModal, ModalController } from '@ionic/angular';
 import { EstudianteService } from 'src/app/services/estudianteService/estudiante.service';
 import { IAnotaciones } from 'src/interfaces/AnotacionInterface';
 import { IEstudiante } from 'src/interfaces/apoderadoInterface';
@@ -28,6 +28,7 @@ export class ProfileStudentComponent implements OnInit {
     private estudianteService: EstudianteService,
     private menuCtrl: MenuController,
     public alertController: AlertController,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -80,11 +81,6 @@ export class ProfileStudentComponent implements OnInit {
   closeDetailModal() {
     this.detailModal.dismiss();
     this.selectedAnotacion = null;
-  }
-
-  presentPopover(e: Event) {
-    this.popover.event = e;
-    this.isOpen = true;
   }
 
   working() {

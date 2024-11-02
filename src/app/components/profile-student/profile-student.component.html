@@ -4,7 +4,8 @@
       <h1 class="title text1 ion-text-center">
         <ng-container *ngIf="student; else loadingSkeleton">
           <!-- <p><b>Nombre Estudiante</b></p> -->
-          <p><b><ion-text class="mayusculas">{{ student.primer_nombre_alumno }} {{ student.primer_apellido_alumno }}</ion-text></b>
+          <p><b><ion-text class="mayusculas">{{ student.primer_nombre_alumno }} {{ student.primer_apellido_alumno
+                }}</ion-text></b>
           </p>
         </ng-container>
         <ng-template #loadingSkeleton>
@@ -102,8 +103,8 @@
       <app-chart [attendanceData]="attendanceData"></app-chart>
     </ng-container>
 
-    <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round"
-        (click)="working()">Ver Asistencia</ion-button>
+    <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round" (click)="working()">Ver
+      Asistencia</ion-button>
 
     <ng-template #loadingSkeletonChart>
       <ion-skeleton-text animated
@@ -111,7 +112,7 @@
     </ng-template>
   </ion-card>
 
-  <ion-card class="cardCenter3">
+  <ion-card class="cardCenter3 mb-5">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
         <ng-container *ngIf="student;else loadingSkeleton3">
@@ -133,36 +134,33 @@
     </ng-template>
   </ion-card>
 
-  <div style="margin-top: 8px;">
-    <ion-button class="buttonLogin my-5 px-5" color="light" expand="full" shape="round" (click)="presentPopover($event)">¡Tu
-      opinión nos
-      importa!</ion-button>
-    <ion-popover #popover [isOpen]="isOpen" (didDismiss)="isOpen = false" triggerAction="click" side="top"
-      alignment="center" class="popover-sugerencias">
-      <ng-template>
-        <ion-content class="ion-padding">
-          <ion-card>
-            <ion-card-header>
-              <ion-card-title>Información</ion-card-title>
-            </ion-card-header>
-            <ion-card-content>
-              <p>Esta es la segunda versión de nuestra aplicación y actualmente estámos en fase de prueba...</p>
-              <p>¡Tu feedback es crucial para nosotros!</p>
-              <p>Estamos comprometidos en asegurarnos de que esta herramienta cumpla con tus necesidades y expectativas.
-              </p>
-              <p>Agradecemos cualquier comentario o sugerencia que puedas tener.</p>
-              <p>Para más información, feedback o reporte de problemas, por favor no dudes en contactar con el
-                desarrollador de esta app.</p>
-              <p>Contacto del desarrollador (Whatsapp):
-                <br>
-                <b class="ion-text-center">+569 37673730</b>
-              </p>
-            </ion-card-content>
-          </ion-card>
-        </ion-content>
-      </ng-template>
-    </ion-popover>
+  <!-- <div style="margin-top: 8px;">
+    <button id="open-opinion-modal" class="custom-button blue-button">¡Tu opinión nos importa!</button>
   </div>
+  <ion-modal trigger="open-opinion-modal" [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5, 1]">
+    <ng-template>
+      <ion-content class="ion-padding">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Información</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <p>Esta es la segunda versión de nuestra aplicación y actualmente estámos en fase de prueba...</p>
+            <p>¡Tu feedback es crucial para nosotros!</p>
+            <p>Estamos comprometidos en asegurarnos de que esta herramienta cumpla con tus necesidades y expectativas.
+            </p>
+            <p>Agradecemos cualquier comentario o sugerencia que puedas tener.</p>
+            <p>Para más información, feedback o reporte de problemas, por favor no dudes en contactar con el
+              desarrollador de esta app.</p>
+            <p>Contacto del desarrollador (Whatsapp):
+              <br>
+              <b class="ion-text-center">+569 37673730</b>
+            </p>
+          </ion-card-content>
+        </ion-card>
+      </ion-content>
+    </ng-template>
+  </ion-modal> -->
 
   <!-- MODAL ANOTACIONES -->
   <ion-modal #modal [presentingElement]="presentingElement">

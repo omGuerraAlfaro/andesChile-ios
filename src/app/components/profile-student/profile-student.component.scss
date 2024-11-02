@@ -171,3 +171,51 @@ ion-label p {
   background-color: var(--ion-color-light);
   border-top: 1px solid var(--ion-color-medium);
 }
+
+
+/* Estilos generales para todos los botones personalizados */
+.custom-button {
+  display: block;
+  width: 80%;
+  margin: 10px auto;
+  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+/* Botón de Iniciar Sesión (Rojo) */
+.red-button {
+  background-color: #ff4444; /* color rojo */
+}
+
+.red-button:hover {
+  background-color: #ff6666; /* más claro al hacer hover */
+}
+
+/* Botón de Sobre la APP (Azul) */
+.blue-button {
+  background-color: #007bff; /* color azul */
+}
+
+.blue-button:hover {
+  background-color: #66aaff; /* más claro al hacer hover */
+}
+
+/* Efecto de clic en el botón */
+.custom-button:active {
+  transform: scale(0.98);
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilo de enfoque para accesibilidad */
+.custom-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 0px 3px rgba(255, 182, 77, 0.6);
+}
