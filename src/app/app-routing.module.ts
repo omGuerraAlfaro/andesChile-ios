@@ -6,7 +6,7 @@ import { IngresadoGuard } from './guards/auth-guard.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'splash',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tbk/tbk.module').then(m => m.TbkPageModule)
   },
   {
-    path: 'splash',
-    loadChildren: () => import('./pages/splash/splash.module').then(m => m.SplashPageModule),
-  },
-  {
     path: 'profile',
     loadChildren: () => import('./pages/profile/profile.module').then(m => m.ProfilePageModule),
     canActivate: [IngresadoGuard]
@@ -40,11 +36,6 @@ const routes: Routes = [
     path: 'configuration',
     loadChildren: () => import('./pages/configuration/configuration.module').then( m => m.ConfigurationPageModule)
   },
-
-
-
-
-
 ];
 
 @NgModule({

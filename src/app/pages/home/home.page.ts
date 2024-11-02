@@ -19,6 +19,12 @@ export class HomePage implements OnInit {
   ) { }
 
   ngOnInit() {
+    if (localStorage.getItem('ingresado') && (localStorage.getItem('usuario'))) {
+      this.router.navigate(['/home/profile']);
+    } else {
+      localStorage.setItem('ingresado', 'false')
+      this.router.navigate(['/login']);
+    }
     this.loadStudents();
   }
 
