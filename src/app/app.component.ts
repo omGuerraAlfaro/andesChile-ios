@@ -15,7 +15,9 @@ export class AppComponent implements OnInit {
 
   constructor(private infoApoderadoService: InfoApoderadoService, private router: Router, private platform: Platform) {
     this.initializeDeepLinks();
-
+    if (!localStorage.getItem('ingresado')) {
+      localStorage.setItem('ingresado', 'false');
+    }
   }
 
   ngOnInit() {
