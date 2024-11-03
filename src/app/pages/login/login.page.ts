@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { ToastController, MenuController } from '@ionic/angular';
+import { ToastController, MenuController, ModalController } from '@ionic/angular';
 import { AuthService } from 'src/app/services/authService/auth.service';
 import { ILoginResponse, IUser } from 'src/interfaces/login.interface';
 
@@ -25,7 +25,13 @@ export class LoginPage {
 
   userData!: IUser;
 
-  constructor(private router: Router, public toastController: ToastController, private auth: AuthService, private menuCtrl: MenuController) { }
+  constructor(
+    private router: Router,
+    public toastController: ToastController,
+    private auth: AuthService,
+    private menuCtrl: MenuController,
+    private modalController: ModalController
+  ) { }
 
   ingresar(): void {
     if (!this.validateModel(this.user)) {
@@ -43,8 +49,8 @@ export class LoginPage {
         if (loginData && loginData.token) {
           this.userData = loginData.user;
           console.log(this.userData);
-          
-          const { id , username, correo_electronico, rut } = this.userData;
+
+          const { id, username, correo_electronico, rut } = this.userData;
 
           this.saveUserDataToLocalStorage(id.toString(), username, correo_electronico, rut, loginData.token);
           this.navigateToProfile(loginData.user);
@@ -52,8 +58,10 @@ export class LoginPage {
           this.presentToast('El usuario y/o contraseña son inválidos', 3000);
         }
         this.menuCtrl.enable(false);
+        this.closeModal();
       },
       error: (error) => {
+        this.closeModal();
         console.error("Error en el inicio de sesión:", error);
         this.presentToast('Error al intentar iniciar sesión. Inténtalo de nuevo.', 3000);
       }
@@ -96,6 +104,13 @@ export class LoginPage {
       }
     }
     return true;
+  }
+
+  async closeModal() {
+    const modal = await this.modalController.getTop();
+    if (modal) {
+      await modal.dismiss();
+    }
   }
 
   //toast

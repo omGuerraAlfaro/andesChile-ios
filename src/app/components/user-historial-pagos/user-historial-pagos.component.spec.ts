@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
 
-import { SplashPage } from './splash.page';
+import { UserHistorialPagosComponent } from './user-historial-pagos.component';
 
-describe('SplashPage', () => {
-  let component: SplashPage;
-  let fixture: ComponentFixture<SplashPage>;
+describe('UserHistorialPagosComponent', () => {
+  let component: UserHistorialPagosComponent;
+  let fixture: ComponentFixture<UserHistorialPagosComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SplashPage ],
+      declarations: [ UserHistorialPagosComponent ],
       imports: [IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SplashPage);
+    fixture = TestBed.createComponent(UserHistorialPagosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   }));

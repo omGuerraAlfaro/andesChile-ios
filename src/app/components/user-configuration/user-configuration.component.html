@@ -10,15 +10,15 @@
             <ion-label position="floating"><b>Nombre</b></ion-label>
             <br>
             <br>
-            <ion-text>{{ userData.primer_nombre }} {{ userData.segundo_nombre }} {{ userData.primer_apellido }} {{
-              userData.segundo_apellido }}</ion-text>
+            <ion-text>{{ userData.primer_nombre_apoderado }} {{ userData.segundo_nombre_apoderado }} {{ userData.primer_apellido_apoderado }} {{
+              userData.segundo_apellido_apoderado }}</ion-text>
           </ion-item>
-          <ion-item>
+          <!-- <ion-item>
             <ion-label position="floating"><b>Fecha de Nacimiento</b></ion-label>
             <br>
             <br>
             <ion-text>{{ userData.fecha_nacimiento | date }}</ion-text>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
             <ion-label position="floating"><b>RUT</b></ion-label>
             <br>
@@ -29,20 +29,20 @@
             <ion-label position="floating"><b>Teléfono</b></ion-label>
             <br>
             <br>
-            <ion-text>+56 {{ userData.telefono }}</ion-text>
+            <ion-text>+56 {{ userData.telefono_apoderado }}</ion-text>
           </ion-item>
           <ion-item>
             <ion-label position="floating"><b>Correo Electrónico</b></ion-label>
             <br>
             <br>
-            <ion-text>{{ userData.correo_electronico }}</ion-text>
+            <ion-text>{{ userData.correo_apoderado }}</ion-text>
           </ion-item>
-          <ion-item>
+          <!-- <ion-item>
             <ion-label position="floating"><b>Estado Civil</b></ion-label>
             <br>
             <br>
             <ion-text>{{ userData.estado_civil }}</ion-text>
-          </ion-item>
+          </ion-item> -->
           <ion-item>
             <ion-label position="floating"><b>Nacionalidad</b></ion-label>
             <br>
@@ -50,10 +50,10 @@
             <ion-text>{{ userData.nacionalidad }}</ion-text>
           </ion-item>
           <ion-item>
-            <ion-label position="floating"><b>Actividad</b></ion-label>
+            <ion-label position="floating"><b>Profesión u Oficio</b></ion-label>
             <br>
             <br>
-            <ion-text>{{ userData.actividad }}</ion-text>
+            <ion-text>{{ userData.profesion_oficio }}</ion-text>
           </ion-item>
           <ion-item>
             <ion-label position="floating"><b>Escolaridad</b></ion-label>
@@ -99,47 +99,47 @@
           <ion-list *ngIf="editData">
             <ion-item>
               <ion-label>Primer Nombre: </ion-label>
-              <ion-input disabled [(ngModel)]="editData.primer_nombre"></ion-input>
+              <ion-input disabled [(ngModel)]="editData.primer_nombre_apoderado"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Segundo Nombre: </ion-label>
-              <ion-input [(ngModel)]="editData.segundo_nombre"></ion-input>
+              <ion-input [(ngModel)]="editData.segundo_nombre_apoderado"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Primer Apellido: </ion-label>
-              <ion-input disabled [(ngModel)]="editData.primer_apellido"></ion-input>
+              <ion-input disabled [(ngModel)]="editData.primer_apellido_apoderado"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Segundo Apellido:</ion-label>
-              <ion-input [(ngModel)]="editData.segundo_apellido"></ion-input>
+              <ion-input [(ngModel)]="editData.segundo_apellido_apoderado"></ion-input>
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
               <ion-label position="floating">Fecha de Nacimiento:</ion-label>
               <div class="datetime-container">
                 <ion-datetime display-format="DD MMM YYYY" picker-format="DD MMM YYYY" presentation="date"
                   [(ngModel)]="editData.fecha_nacimiento">
                 </ion-datetime>
               </div>
-            </ion-item>
+            </ion-item> -->
             <ion-item>
               <ion-label>Teléfono:</ion-label>
-              <ion-input [(ngModel)]="editData.telefono"></ion-input>
+              <ion-input [(ngModel)]="editData.telefono_apoderado"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Correo Electrónico:</ion-label>
-              <ion-input [(ngModel)]="editData.correo_electronico"></ion-input>
+              <ion-input [(ngModel)]="editData.correo_apoderado"></ion-input>
             </ion-item>
-            <ion-item>
+            <!-- <ion-item>
               <ion-label>Estado Civil:</ion-label>
               <ion-input [(ngModel)]="editData.estado_civil"></ion-input>
-            </ion-item>
+            </ion-item> -->
             <ion-item>
               <ion-label>Nacionalidad:</ion-label>
               <ion-input [(ngModel)]="editData.nacionalidad"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Actividad:</ion-label>
-              <ion-input [(ngModel)]="editData.actividad"></ion-input>
+              <ion-input [(ngModel)]="editData.profesion_oficio"></ion-input>
             </ion-item>
             <ion-item>
               <ion-label>Escolaridad: </ion-label>

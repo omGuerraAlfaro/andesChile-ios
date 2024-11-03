@@ -22,15 +22,15 @@ export interface IApoderado {
 
 export interface IEstudiante {
     id: number;
-    primer_nombre: string;
-    segundo_nombre: string;
-    primer_apellido: string;
-    segundo_apellido: string;
-    fecha_nacimiento: Date;
+    primer_nombre_alumno: string;
+    segundo_nombre_alumno: string;
+    primer_apellido_alumno: string;
+    segundo_apellido_alumno: string;
+    fecha_nacimiento_alumno: Date;
     rut: string;
     dv: string;
     telefono_contacto: string;
-    genero: string;
+    genero_alumno: string;
     alergico: string;
     vive_con: string;
     enfermedad_cronica: string;
@@ -55,16 +55,16 @@ export interface EstudianteConBoletas {
 
 export interface IApoderadoAlone {
     id: number;
-    primer_nombre: string;
-    segundo_nombre: string;
-    primer_apellido: string;
-    segundo_apellido: string;
+    primer_nombre_apoderado: string;
+    segundo_nombre_apoderado: string;
+    primer_apellido_apoderado: string;
+    segundo_apellido_apoderado: string;
     fecha_nacimiento: Date;
-    telefono: string;
-    correo_electronico: string;
+    telefono_apoderado: string;
+    correo_apoderado: string;
     estado_civil: string;
     nacionalidad: string;
-    actividad: string;
+    profesion_oficio: string;
     escolaridad: string;
     rut: string;
     dv: string;
