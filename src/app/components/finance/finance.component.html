@@ -30,6 +30,18 @@
               <p><b>Información Financiera</b></p>
               <p><b>{{ st.estudiantes[1].primer_nombre_alumno }} {{ st.estudiantes[1].primer_apellido_alumno }}</b></p>
             </div>
+            <div *ngIf="studentId === 'estudiante3'">
+              <p><b>Información Financiera</b></p>
+              <p><b>{{ st.estudiantes[2].primer_nombre_alumno }} {{ st.estudiantes[2].primer_apellido_alumno }}</b></p>
+            </div>
+            <div *ngIf="studentId === 'estudiante4'">
+              <p><b>Información Financiera</b></p>
+              <p><b>{{ st.estudiantes[3].primer_nombre_alumno }} {{ st.estudiantes[3].primer_apellido_alumno }}</b></p>
+            </div>
+            <div *ngIf="studentId === 'estudiante5'">
+              <p><b>Información Financiera</b></p>
+              <p><b>{{ st.estudiantes[4].primer_nombre_alumno }} {{ st.estudiantes[4].primer_apellido_alumno }}</b></p>
+            </div>
           </h1>
         </ng-container>
       </div>

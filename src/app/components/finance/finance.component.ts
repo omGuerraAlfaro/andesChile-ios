@@ -15,6 +15,9 @@ import { ChangeDetectorRef } from '@angular/core';
   styleUrls: ['./finance.component.scss'],
 })
 export class FinanceComponent implements OnInit {
+getIndex(_t29: string): any {
+throw new Error('Method not implemented.');
+}
   isLoading: boolean = true;
   // displayedColumns: string[] = ['select', 'detalle', 'fecha', 'subtotal', 'iva', 'total', 'nota'];
   displayedColumns: string[] = ['select', 'detalle', 'fecha', 'total'];
