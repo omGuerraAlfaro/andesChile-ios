@@ -2,8 +2,18 @@
   <ion-card>
     <ion-card-header>
       <ion-card-title>Calendario Escolar</ion-card-title>
-      <p></p>
     </ion-card-header>
   </ion-card>
-  
+
+  <ion-card>
+    <ion-calendar
+    [(ngModel)]="date"
+    [options]="options"
+    [type]="'string'"
+    [format]="'YYYY-MM-DD'"
+  ></ion-calendar>
+
+  </ion-card>
+
+
 </ion-content>

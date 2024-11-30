@@ -14,13 +14,28 @@ ion-content.background {
     margin: 0 auto;
 }
 
-.note {
-    white-space: normal;
-    color: #3880ff;
-}
-
-.datetime-container {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-}
+ion-calendar {
+    .days-btn.marked {
+      background-color: #50c878; /* Color de fondo para fechas marcadas */
+      color: white; /* Color del texto */
+      border-radius: 50%; /* Opcional: forma circular */
+    }
+  
+    .days-btn.marked.red {
+      background-color: red;
+    }
+  
+    .days-btn.marked.blue {
+      background-color: blue;
+    }
+  
+    .days-btn.marked.green {
+      background-color: green;
+    }
+  
+    .days-btn.marked.black {
+      background-color: black;
+    }
+  }
+  
+  

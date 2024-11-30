@@ -18,6 +18,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { DebugInterceptor } from './services/debug.interceptor';
+import { CalendarModule } from 'ion2-calendar';
+
 registerLocaleData(localeEs);
 
 export function playerFactory() {
@@ -35,6 +37,8 @@ export function playerFactory() {
     MatTableModule,
     MatCheckboxModule,
     NoopAnimationsModule,
+    CalendarModule
+    
   ],
   providers: [
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, 
