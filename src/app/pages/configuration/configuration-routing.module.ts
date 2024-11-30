@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ConfigurationPage } from './configuration.page';
 import { UserConfigurationComponent } from 'src/app/components/user-configuration/user-configuration.component';
 import { UserHistorialPagosComponent } from 'src/app/components/user-historial-pagos/user-historial-pagos.component';
+import { UserCalendarioComponent } from 'src/app/components/user-calendario/user-calendario.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
       {
         path: 'user/historial-pagos/:id',
         component: UserHistorialPagosComponent,
+      },
+      {
+        path: 'user/calendario-escolar/:id',
+        component: UserCalendarioComponent,
       }
     ]
   }

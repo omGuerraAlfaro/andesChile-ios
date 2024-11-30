@@ -86,6 +86,13 @@ export class HomePage implements OnInit {
     }
   }
 
+  goCalendarUser() {
+    const rut = localStorage.getItem('rutApoderado');
+    if (rut) {
+      this.router.navigate(['configuration/user/calendario-escolar/' + rut]);
+    }
+  }
+
   async presentAlertConfirm(header: string, message: string) {
     const alert = await this.alertController.create({
       header,

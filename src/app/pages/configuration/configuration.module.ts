@@ -9,6 +9,7 @@ import { ConfigurationPageRoutingModule } from './configuration-routing.module';
 import { ConfigurationPage } from './configuration.page';
 import { UserConfigurationComponent } from 'src/app/components/user-configuration/user-configuration.component';
 import { UserHistorialPagosComponent } from 'src/app/components/user-historial-pagos/user-historial-pagos.component';
+import { UserCalendarioComponent } from 'src/app/components/user-calendario/user-calendario.component';
 
 @NgModule({
   imports: [
@@ -17,6 +18,6 @@ import { UserHistorialPagosComponent } from 'src/app/components/user-historial-p
     IonicModule,
     ConfigurationPageRoutingModule
   ],
-  declarations: [ConfigurationPage, UserConfigurationComponent, UserHistorialPagosComponent]
+  declarations: [ConfigurationPage, UserConfigurationComponent, UserHistorialPagosComponent, UserCalendarioComponent]
 })
 export class ConfigurationPageModule {}
