@@ -14,28 +14,48 @@ ion-content.background {
     margin: 0 auto;
 }
 
-ion-calendar {
-    .days-btn.marked {
-      background-color: #50c878; /* Color de fondo para fechas marcadas */
-      color: white; /* Color del texto */
-      border-radius: 50%; /* Opcional: forma circular */
-    }
-  
-    .days-btn.marked.red {
-      background-color: red;
-    }
-  
-    .days-btn.marked.blue {
-      background-color: blue;
-    }
-  
-    .days-btn.marked.green {
-      background-color: green;
-    }
-  
-    .days-btn.marked.black {
-      background-color: black;
-    }
-  }
-  
-  
+ion-loading {
+  z-index: 9999 !important;
+}
+
+full-calendar {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 200px); // Ajusta según tu layout
+  z-index: 9999 !important;
+}
+
+
+/* Contenedor del spinner */
+.loading-container {
+  display: flex;
+  flex-direction: column; /* Alinea el spinner y el texto verticalmente */
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Toma toda la altura disponible del ion-content */
+}
+
+/* Estilo del spinner */
+.custom-spinner {
+  width: 70px; /* Tamaño del spinner */
+  height: 70px;
+  color: #ffffff; /* Color blanco del spinner */
+}
+
+/* Texto de carga */
+.loading-text {
+  margin-top: 10px;
+  font-size: 1.2rem; /* Texto más grande */
+  color: #ffffff; /* Letras blancas */
+  font-weight: bold; /* Texto en negrita */
+}
+
+.calendar-header .month-title {
+  color: white !important;
+  font-size: 1.5rem !important;
+  font-weight: bold !important;
+}
+
+.calendar-header .month-arrow {
+  color: white !important;
+}

@@ -4,16 +4,45 @@
       <ion-card-title>Calendario Escolar</ion-card-title>
     </ion-card-header>
   </ion-card>
+  
+  <ng-container *ngIf="isLoading; else calendarioTemplate">
+    <div class="loading-container">
+      <ion-spinner name="crescent" class="custom-spinner"></ion-spinner>
+      <p class="loading-text">Cargando fechas...</p>
+    </div>
+  </ng-container>
 
-  <ion-card>
-    <ion-calendar
-    [(ngModel)]="date"
-    [options]="options"
-    [type]="'string'"
-    [format]="'YYYY-MM-DD'"
-  ></ion-calendar>
+  <ng-template #calendarioTemplate>
+    <!-- Ion-datetime con resaltado de días y evento onChange -->
+    <ion-card>
+      <ion-item>
+        <ion-datetime 
+          firstDayOfWeek="1"
+          presentation="date"
+          [highlightedDates]="highlightedDates"
+          (ionChange)="onDateChange($event)">
+        </ion-datetime>
+      </ion-item>
+    </ion-card>
 
-  </ion-card>
-
-
+    <!-- Card de detalle de la fecha seleccionada -->
+    <ion-card *ngIf="selectedDate">
+      <ion-card-header>
+        <ion-card-title>Eventos del {{ selectedDate | date:'fullDate' }}</ion-card-title>
+      </ion-card-header>
+      <ion-list *ngIf="eventosDelDia.length > 0; else sinEventos">
+        <ion-item *ngFor="let evento of eventosDelDia">
+          <ion-label>
+            <h2>{{ evento.tipo }}</h2>
+            <p>{{ evento.descripcion }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ng-template #sinEventos>
+        <ion-item>
+          <ion-label>No hay eventos para esta fecha</ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-card>
+  </ng-template>
 </ion-content>

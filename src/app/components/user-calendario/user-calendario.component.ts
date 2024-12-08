@@ -1,60 +1,101 @@
 import { Component, OnInit } from '@angular/core';
-import { CalendarComponentOptions, DayConfig } from 'ion2-calendar';
 import { CalendarioEscolarService } from 'src/app/services/calendarioService/calendario-escolar.service';
 import { FechaCalendario } from 'src/interfaces/calendario.interface';
 
 @Component({
   selector: 'app-user-calendario',
   templateUrl: './user-calendario.component.html',
-  styleUrls: ['./user-calendario.component.scss'],
+  styleUrls: ['./user-calendario.component.scss']
 })
 export class UserCalendarioComponent implements OnInit {
-  date!: string; // Fecha seleccionada
-  daysConfig: DayConfig[] = []; // Configuración de días
-  options!: CalendarComponentOptions;
+  isLoading = true;
+  eventos: FechaCalendario[] = [];
+  eventMap = new Map<string, FechaCalendario[]>();
+  selectedDate: string = '';
+  eventosDelDia: FechaCalendario[] = [];
+
+  // Callback para destacar días con eventos
+  highlightedDates = (isoString: string) => {
+    const date = new Date(isoString);
+    const y = date.getUTCFullYear();
+    const m = String(date.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(date.getUTCDate()).padStart(2, '0');
+    const key = `${y}-${m}-${d}`;
+
+    const eventsForDay = this.eventMap.get(key);
+    if (eventsForDay && eventsForDay.length > 0) {
+      // Tomamos el primer evento del día para determinar el color
+      const tipoEvento = eventsForDay[0].tipo.toLowerCase();
+
+      switch (tipoEvento) {
+        case 'evento':
+          return { textColor: '#000000', backgroundColor: '#FFFF00' }; // Amarillo
+        case 'clase':
+          return { textColor: '#FFFFFF', backgroundColor: '#0000FF' }; // Azul
+        case 'feriado':
+          return { textColor: '#FFFFFF', backgroundColor: '#FF0000' }; // Rojo
+        case 'Interferiado':
+          return { textColor: '#FFFFFF', backgroundColor: '#FF0000' }; // Rojo
+        default:
+          return undefined;
+      }
+    }
+
+    return undefined;
+  }
 
   constructor(private calendarioService: CalendarioEscolarService) {}
 
   ngOnInit() {
-    // Llama al método para cargar las fechas desde el backend
     this.loadDates();
   }
 
   loadDates() {
+    this.isLoading = true;
     this.calendarioService.getAllFechas().subscribe({
       next: (data: FechaCalendario[]) => {
-        console.log('Datos del endpoint:', data);
-  
-        // Transforma los datos del endpoint al formato `daysConfig`
-        this.daysConfig = data.map((fecha) => ({
-          date: new Date(fecha.fecha), // Convierte la fecha al formato `Date`
-          marked: true, // Indica que está marcado
-          cssClass: this.getCssClassByTipo(fecha.tipo), // Clase CSS según el tipo
-          subTitle: fecha.descripcion ?? 'Sin descripción', // Maneja el caso de `null`
-        }));
-  
-        // Configura las opciones del calendario
-        this.options = {
-          daysConfig: this.daysConfig,
-        };
-  
-        console.log('Configuración de días:', this.daysConfig);
+        this.eventos = data;
+
+        // Llenamos el mapa con las fechas como claves
+        this.eventos.forEach(evento => {
+          const eventDate = new Date(evento.fecha);
+          const y = eventDate.getUTCFullYear();
+          const m = String(eventDate.getUTCMonth() + 1).padStart(2, '0');
+          const d = String(eventDate.getUTCDate()).padStart(2, '0');
+          const key = `${y}-${m}-${d}`;
+
+          if (!this.eventMap.has(key)) {
+            this.eventMap.set(key, []);
+          }
+          this.eventMap.get(key)?.push(evento);
+        });
       },
-      error: (error) => {
-        console.error('Error al cargar las fechas del endpoint:', error);
+      error: (error: any) => {
+        console.error('Error al cargar las fechas:', error);
+      },
+      complete: () => {
+        this.isLoading = false;
       },
     });
   }
-  
 
-  getCssClassByTipo(tipo: string): string {
-    switch (tipo.toLowerCase()) {
-      case 'feriado':
-        return 'feriado-day'; // Clase CSS personalizada
-      case 'clase':
-        return 'class-day'; // Clase CSS personalizada
-      default:
-        return 'default-day';
+  onDateChange(event: any) {
+    this.selectedDate = event.detail.value;
+    this.filtrarEventosPorFecha(this.selectedDate);
+  }
+
+  filtrarEventosPorFecha(isoDateString: string) {
+    if (!isoDateString) {
+      this.eventosDelDia = [];
+      return;
     }
+
+    const selected = new Date(isoDateString);
+    const y = selected.getUTCFullYear();
+    const m = String(selected.getUTCMonth() + 1).padStart(2, '0');
+    const d = String(selected.getUTCDate()).padStart(2, '0');
+    const key = `${y}-${m}-${d}`;
+
+    this.eventosDelDia = this.eventMap.get(key) || [];
   }
 }

@@ -10,7 +10,6 @@ import { ConfigurationPage } from './configuration.page';
 import { UserConfigurationComponent } from 'src/app/components/user-configuration/user-configuration.component';
 import { UserHistorialPagosComponent } from 'src/app/components/user-historial-pagos/user-historial-pagos.component';
 import { UserCalendarioComponent } from 'src/app/components/user-calendario/user-calendario.component';
-import { CalendarModule } from 'ion2-calendar';
 
 @NgModule({
   imports: [
@@ -18,7 +17,6 @@ import { CalendarModule } from 'ion2-calendar';
     FormsModule,
     IonicModule,
     ConfigurationPageRoutingModule,
-    CalendarModule,
     FormsModule
   ],
   declarations: [ConfigurationPage, UserConfigurationComponent, UserHistorialPagosComponent, UserCalendarioComponent],
