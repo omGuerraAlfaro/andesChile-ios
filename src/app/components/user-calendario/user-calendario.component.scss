@@ -1,61 +1,89 @@
-.ion-page,
-#root,
-body,
+:host,
 ion-content.background {
-    --background: url(../../../assets/img/fondo1111.svg) no-repeat fixed;
-
+  --background: url(../../../assets/img/fondo1111.svg) no-repeat center center fixed;
+  background-size: cover;
 }
 
-.buttonLogin {
-    width: 85%;
-    color: rgb(255, 255, 255);
-    letter-spacing: 0.08rem;
-    display: auto;
-    margin: 0 auto;
+.intro-section {
+  text-align: center;
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
 }
 
-ion-loading {
-  z-index: 9999 !important;
+.intro-section p {
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #ffffff;
 }
 
-full-calendar {
-  display: block;
-  width: 100%;
-  height: calc(100vh - 200px); // Ajusta según tu layout
-  z-index: 9999 !important;
+/* Ajustes al tamaño del ion-datetime para hacerlo más grande */
+ion-datetime {
+  margin: 40px auto;
+  width: 100%; /* Aumentar el ancho */
+  max-width: 500px; /* Aumentar el max-width para agrandar el calendario */
+  --background: #e0f7ff;
+  --background-rgb: 224, 247, 255;
+  border-radius: 16px;
+  box-shadow: rgba(2, 123, 154, 0.3) 0px 10px 15px -3px;
 }
 
 
-/* Contenedor del spinner */
+/* Ajustar el tamaño de la leyenda más pequeño */
+.legend {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px; 
+  margin: 20px auto; 
+  max-width: 600px;
+  font-size: 0.85rem; /* Disminuir el tamaño de la fuente de la leyenda */
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+}
+
+.legend-item .circle {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.circle.green { background: #00A000; }
+.circle.red { background: #FF0000; }
+.circle.blue { background: #0000FF; }
+.circle.yellow { background: #FFFF00; }
+
+ion-card {
+  margin: 20px auto;
+  width: 90%;
+  max-width: 600px;
+  border-radius: 16px;
+}
+
 .loading-container {
   display: flex;
-  flex-direction: column; /* Alinea el spinner y el texto verticalmente */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%; /* Toma toda la altura disponible del ion-content */
+  height: 100%;
 }
 
-/* Estilo del spinner */
 .custom-spinner {
-  width: 70px; /* Tamaño del spinner */
+  width: 70px;
   height: 70px;
-  color: #ffffff; /* Color blanco del spinner */
+  color: #ffffff;
 }
 
-/* Texto de carga */
 .loading-text {
   margin-top: 10px;
-  font-size: 1.2rem; /* Texto más grande */
-  color: #ffffff; /* Letras blancas */
-  font-weight: bold; /* Texto en negrita */
-}
-
-.calendar-header .month-title {
-  color: white !important;
-  font-size: 1.5rem !important;
-  font-weight: bold !important;
-}
-
-.calendar-header .month-arrow {
-  color: white !important;
+  font-size: 1.2rem;
+  color: #ffffff;
+  font-weight: bold;
 }

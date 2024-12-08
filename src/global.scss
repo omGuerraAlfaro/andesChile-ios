@@ -25,3 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
+ion-datetime {
+    --calendar-day-size: 3rem;
+    --calendar-day-font-size: 1.2rem;
+    --calendar-day-padding: 0.5rem;
+  }
+  

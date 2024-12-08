@@ -1,9 +1,11 @@
 <ion-content class="background">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Calendario Escolar</ion-card-title>
-    </ion-card-header>
-  </ion-card>
+  <div class="intro-section">
+    <p>
+      Este es el calendario escolar, en el cual podrás ver las fechas importantes del año: 
+      días feriados, eventos, clases importantes y más.  
+      Selecciona una fecha en el calendario para ver los detalles correspondientes.
+    </p>
+  </div>
   
   <ng-container *ngIf="isLoading; else calendarioTemplate">
     <div class="loading-container">
@@ -13,22 +15,32 @@
   </ng-container>
 
   <ng-template #calendarioTemplate>
-    <!-- Ion-datetime con resaltado de días y evento onChange -->
-    <ion-card>
-      <ion-item>
-        <ion-datetime 
-          firstDayOfWeek="1"
-          presentation="date"
-          [highlightedDates]="highlightedDates"
-          (ionChange)="onDateChange($event)">
-        </ion-datetime>
-      </ion-item>
-    </ion-card>
+    <!-- LEYENDA ARRIBA DEL CALENDARIO -->
+    <div class="legend">
+      <div class="legend-item">
+        <span class="circle red"></span><span>Días feriados e interferiados</span>
+      </div>
+      <div class="legend-item">
+        <span class="circle blue"></span><span>Clases Importantes</span>
+      </div>
+      <div class="legend-item">
+        <span class="circle yellow"></span><span>Eventos escolares</span>
+      </div>
+    </div>
+    
+    <!-- CALENDARIO -->
+    <ion-datetime 
+      firstDayOfWeek="1"
+      presentation="date"
+      [highlightedDates]="highlightedDates"
+      (ionChange)="onDateChange($event)">
+    </ion-datetime>
 
     <!-- Card de detalle de la fecha seleccionada -->
     <ion-card *ngIf="selectedDate">
       <ion-card-header>
-        <ion-card-title>Eventos del {{ selectedDate | date:'fullDate' }}</ion-card-title>
+        <ion-card-title>Detalles:</ion-card-title>
+        <ion-card-title>{{ selectedDate | date:'fullDate' }}</ion-card-title>
       </ion-card-header>
       <ion-list *ngIf="eventosDelDia.length > 0; else sinEventos">
         <ion-item *ngFor="let evento of eventosDelDia">
