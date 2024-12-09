@@ -29,12 +29,14 @@
     </div>
     
     <!-- CALENDARIO -->
-    <ion-datetime 
+    <div class="mx-5">
+      <ion-datetime
       firstDayOfWeek="1"
       presentation="date"
       [highlightedDates]="highlightedDates"
       (ionChange)="onDateChange($event)">
     </ion-datetime>
+    </div>
 
     <!-- Card de detalle de la fecha seleccionada -->
     <ion-card *ngIf="selectedDate">
