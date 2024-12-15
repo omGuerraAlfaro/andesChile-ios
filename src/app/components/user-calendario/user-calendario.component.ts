@@ -16,15 +16,10 @@ export class UserCalendarioComponent implements OnInit {
 
   // Callback para destacar días con eventos
   highlightedDates = (isoString: string) => {
-    const date = new Date(isoString);
-    const y = date.getUTCFullYear();
-    const m = String(date.getUTCMonth() + 1).padStart(2, '0');
-    const d = String(date.getUTCDate()).padStart(2, '0');
-    const key = `${y}-${m}-${d}`;
+    const key = isoString.split('T')[0]; // Extraemos solo la parte 'YYYY-MM-DD'
 
     const eventsForDay = this.eventMap.get(key);
     if (eventsForDay && eventsForDay.length > 0) {
-      // Tomamos el primer evento del día para determinar el color
       const tipoEvento = eventsForDay[0].tipo.toLowerCase();
 
       switch (tipoEvento) {
@@ -34,7 +29,7 @@ export class UserCalendarioComponent implements OnInit {
           return { textColor: '#FFFFFF', backgroundColor: '#0000FF' }; // Azul
         case 'feriado':
           return { textColor: '#FFFFFF', backgroundColor: '#FF0000' }; // Rojo
-        case 'Interferiado':
+        case 'interferiado':
           return { textColor: '#FFFFFF', backgroundColor: '#FF0000' }; // Rojo
         default:
           return undefined;
@@ -58,11 +53,7 @@ export class UserCalendarioComponent implements OnInit {
 
         // Llenamos el mapa con las fechas como claves
         this.eventos.forEach(evento => {
-          const eventDate = new Date(evento.fecha);
-          const y = eventDate.getUTCFullYear();
-          const m = String(eventDate.getUTCMonth() + 1).padStart(2, '0');
-          const d = String(eventDate.getUTCDate()).padStart(2, '0');
-          const key = `${y}-${m}-${d}`;
+          const key = evento.fecha; // Usamos directamente la fecha en formato ISO
 
           if (!this.eventMap.has(key)) {
             this.eventMap.set(key, []);
@@ -80,7 +71,7 @@ export class UserCalendarioComponent implements OnInit {
   }
 
   onDateChange(event: any) {
-    this.selectedDate = event.detail.value;
+    this.selectedDate = event.detail.value.split('T')[0]; // Extraemos solo 'YYYY-MM-DD'
     this.filtrarEventosPorFecha(this.selectedDate);
   }
 
@@ -90,12 +81,7 @@ export class UserCalendarioComponent implements OnInit {
       return;
     }
 
-    const selected = new Date(isoDateString);
-    const y = selected.getUTCFullYear();
-    const m = String(selected.getUTCMonth() + 1).padStart(2, '0');
-    const d = String(selected.getUTCDate()).padStart(2, '0');
-    const key = `${y}-${m}-${d}`;
-
+    const key = isoDateString; // Usamos directamente la fecha como clave
     this.eventosDelDia = this.eventMap.get(key) || [];
   }
 }
