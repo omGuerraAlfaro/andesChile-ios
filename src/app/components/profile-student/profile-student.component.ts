@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AlertController, MenuController, IonModal, ModalController } from '@ionic/angular';
 import { EstudianteService } from 'src/app/services/estudianteService/estudiante.service';
+import { CalendarioAsistenciaService } from 'src/app/services/calendarioAsistenciaService/calendario-asistencia.service';
 import { IAnotaciones } from 'src/interfaces/AnotacionInterface';
 import { IEstudiante } from 'src/interfaces/apoderadoInterface';
 
@@ -16,16 +17,22 @@ export class ProfileStudentComponent implements OnInit {
   @ViewChild('detailModal', { static: true }) detailModal!: IonModal;
 
   isOpen = false;
-  public attendanceData: number[] = [];
+  public attendanceData: number[] = []; // Datos del gráfico
+  public chartTitle: string = 'Porcentaje de Asistencia'; // Título del gráfico
   presentingElement: Element | null = null;
 
   student: IEstudiante | null = null;
   anotaciones: IAnotaciones[] = [];
   selectedAnotacion: IAnotaciones | null = null;
 
+  public showMessage: boolean = false; // Controla si se muestra el mensaje en lugar del gráfico
+  public attendanceMessage: string = ''; // Mensaje recibido
+
+
   constructor(
     private route: ActivatedRoute,
     private estudianteService: EstudianteService,
+    private calendarioAsistenciaService: CalendarioAsistenciaService, // Nuevo servicio para asistencia
     private menuCtrl: MenuController,
     public alertController: AlertController,
     private modalController: ModalController
@@ -37,9 +44,13 @@ export class ProfileStudentComponent implements OnInit {
       if (rut) {
         this.estudianteService.getInfoEstudiante(rut).subscribe({
           next: (dataStudent: IEstudiante) => {
+            console.log(dataStudent);
+
             this.student = dataStudent;
-            this.attendanceData = [80, 20];
-            //this.getAttendanceData(rut);
+            // Llamar al método para obtener los datos de asistencia
+            if (this.student && this.student.id) {
+              this.getAttendanceData(1, dataStudent.id);
+            }
           },
           error: (error) => {
             console.error('Error al obtener los datos del estudiante:', error);
@@ -51,6 +62,30 @@ export class ProfileStudentComponent implements OnInit {
     this.presentingElement = document.querySelector('.ion-page');
   }
 
+  getAttendanceData(semestreId: number, idEstudiante: number) {
+    const fechaHoy = new Date().toISOString().split('T')[0];
+  
+    this.calendarioAsistenciaService.getAsistenciaResumen(semestreId, idEstudiante, fechaHoy).subscribe({
+      next: (data: { porcentajeAsistencia?: number; porcentajeInasistencia?: number; message?: string }) => {
+        if (data.message) {
+          console.warn('Mensaje recibido:', data.message);
+          this.showMessage = true;
+          this.attendanceMessage = data.message;
+          this.attendanceData = [];
+        } else {
+          this.showMessage = false;
+          this.attendanceData = [
+            data.porcentajeAsistencia || 0,
+            data.porcentajeInasistencia || 0
+          ];
+        }
+      },
+      error: (error) => {
+        console.error('Error al obtener los datos de asistencia:', error);
+      }
+    });
+  }
+  
   getAnotacionesEstudiante(id: any): void {
     this.estudianteService.getAnotacionesEstudiante(id).subscribe({
       next: (dataAnotaciones: IAnotaciones[]) => {
@@ -106,16 +141,3 @@ export class ProfileStudentComponent implements OnInit {
     await alert.present();
   }
 }
-
-
-// getAttendanceData(rut: string) {
-//   this.estudianteService.getAsistenciaEstudiante(rut).subscribe({
-//     next: (data: { porcentajeAsistencia: number, porcentajeInasistencia: number }) => {
-//       this.attendanceData = [data.porcentajeAsistencia, data.porcentajeInasistencia];
-//     },
-//     error: (error) => {
-//       console.error('Error al obtener los datos de asistencia:', error);
-//     }
-//   });
-// }
-

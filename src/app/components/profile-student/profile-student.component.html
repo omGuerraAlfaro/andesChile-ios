@@ -89,28 +89,36 @@
   <ion-card class="cardCenter2">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
-        <ng-container *ngIf="student;else loadingSkeletonTitleChart">
+        <ng-container *ngIf="student; else loadingSkeletonTitleChart">
           <p><b><ion-text class="mayusculas">% Asistencia</ion-text></b></p>
-          <p class="small">Próximamente</p>
         </ng-container>
         <ng-template #loadingSkeletonTitleChart>
           <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
         </ng-template>
       </h1>
     </div>
-
+  
     <ng-container *ngIf="student; else loadingSkeletonChart">
-      <app-chart [attendanceData]="attendanceData"></app-chart>
+      <!-- Mostrar mensaje o gráfico -->
+      <ng-container *ngIf="showMessage; else showChart">
+        <p class="ion-text-center">{{ attendanceMessage }}</p>
+      </ng-container>
+      <ng-template #showChart>
+        <app-chart [attendanceData]="attendanceData"></app-chart>
+      </ng-template>
     </ng-container>
-
-    <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round" (click)="working()">Ver
-      Asistencia</ion-button>
-
+  
+    <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round" (click)="working()">
+      Ver Asistencia
+    </ion-button>
+  
     <ng-template #loadingSkeletonChart>
       <ion-skeleton-text animated
-        style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
+        style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;">
+      </ion-skeleton-text>
     </ng-template>
   </ion-card>
+  
 
   <ion-card class="cardCenter3 mb-5">
     <div class="titleAnimado">

@@ -5,3 +5,15 @@ export interface AlumnoInterface{
     curso: string;
     
 }
+
+
+export interface AsistenciaResumen {
+    estudianteId: number;
+    nombreCompleto?: string;
+    asistencias: number;
+    inasistencias: number;
+    totalidad: number;
+    porcentajeAsistencia: number;
+    porcentajeInasistencia: number;
+    message?: string;
+}

@@ -43,7 +43,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
     const options: ChartOptions<'doughnut'> = {
       responsive: true,
       maintainAspectRatio: true,
-      cutout: '70%',
+      cutout: '25%',
       plugins: {
         legend: {
           display: false,
@@ -61,7 +61,7 @@ export class ChartComponent implements OnInit, AfterViewInit, OnChanges {
           },
           color: '#fff',
           font:{
-            size: 14,
+            size: 12,
             weight: "bolder"
           }
         },
