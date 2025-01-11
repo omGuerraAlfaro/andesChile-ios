@@ -66,29 +66,6 @@
   <ion-card class="cardCenter2">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
-        <ng-container *ngIf="student;else loadingSkeletonTitleChart">
-          <p><b><ion-text class="mayusculas">Anotaciones</ion-text></b></p>
-        </ng-container>
-        <ng-template #loadingSkeletonTitleChart>
-          <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
-        </ng-template>
-      </h1>
-    </div>
-
-    <ng-container *ngIf="student; else loadingSkeletonChart">
-      <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round"
-        (click)="openModalAnotaciones()">Ver Anotaciones</ion-button>
-    </ng-container>
-
-    <ng-template #loadingSkeletonChart>
-      <ion-skeleton-text animated
-        style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
-    </ng-template>
-  </ion-card>
-
-  <ion-card class="cardCenter2">
-    <div class="titleAnimado">
-      <h1 class="title text1 ion-text-center">
         <ng-container *ngIf="student; else loadingSkeletonTitleChart">
           <p><b><ion-text class="mayusculas">% Asistencia</ion-text></b></p>
         </ng-container>
@@ -119,8 +96,53 @@
     </ng-template>
   </ion-card>
   
+  <ion-card class="cardCenter2">
+    <div class="titleAnimado">
+      <h1 class="title text1 ion-text-center">
+        <ng-container *ngIf="student;else loadingSkeletonTitleChart">
+          <p><b><ion-text class="mayusculas">Notas</ion-text></b></p>
+        </ng-container>
+        <ng-template #loadingSkeletonTitleChart>
+          <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+        </ng-template>
+      </h1>
+    </div>
 
-  <ion-card class="cardCenter3 mb-5">
+    <ng-container *ngIf="student; else loadingSkeletonChart">
+      <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round"
+        (click)="working()">Ver Notas</ion-button>
+    </ng-container>
+
+    <ng-template #loadingSkeletonChart>
+      <ion-skeleton-text animated
+        style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
+    </ng-template>
+  </ion-card>
+
+  <ion-card class="cardCenter2 mb-5">
+    <div class="titleAnimado">
+      <h1 class="title text1 ion-text-center">
+        <ng-container *ngIf="student;else loadingSkeletonTitleChart">
+          <p><b><ion-text class="mayusculas">Anotaciones</ion-text></b></p>
+        </ng-container>
+        <ng-template #loadingSkeletonTitleChart>
+          <ion-skeleton-text animated style="width: 80%;"></ion-skeleton-text>
+        </ng-template>
+      </h1>
+    </div>
+
+    <ng-container *ngIf="student; else loadingSkeletonChart">
+      <ion-button class="buttonCertificado mb-5" color="light" expand="full" shape="round"
+        (click)="openModalAnotaciones()">Ver Anotaciones</ion-button>
+    </ng-container>
+
+    <ng-template #loadingSkeletonChart>
+      <ion-skeleton-text animated
+        style="width: 220px; height: 190px; --border-radius: 20px; margin-bottom: 15px;"></ion-skeleton-text>
+    </ng-template>
+  </ion-card>
+
+  <!-- <ion-card class="cardCenter3 mb-5">
     <div class="titleAnimado">
       <h1 class="title text1 ion-text-center">
         <ng-container *ngIf="student;else loadingSkeleton3">
@@ -140,7 +162,7 @@
     <ng-template #imgSkeleton2>
       <ion-skeleton-text animated style="width: 150px; height: 190px; --border-radius: 20px;"></ion-skeleton-text>
     </ng-template>
-  </ion-card>
+  </ion-card> -->
 
   <!-- <div style="margin-top: 8px;">
     <button id="open-opinion-modal" class="custom-button blue-button">¡Tu opinión nos importa!</button>
