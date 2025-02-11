@@ -1,0 +1,47 @@
+.ion-page,
+#root,
+body,
+ion-content.background {
+    --background: url(../../../assets/img/fondo1111.svg) no-repeat fixed;
+    --background-size: cover;
+}
+
+.certificates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    justify-items: center;
+}
+
+.certificate-card {
+    text-align: center;
+    padding: 25px;
+    border-radius: 25px;
+    background: linear-gradient(225deg, #ffffff, rgba(215, 215, 215, 0.4));
+    box-shadow: -15px 15px 40px rgba(0, 0, 0, 0.1), 15px -15px 40px rgba(255, 255, 255, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    height: 180px;
+    transition: transform 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.certificate-card:hover {
+    transform: scale(1.08);
+}
+
+ion-icon {
+    font-size: 60px;
+    color: var(--ion-color-primary);
+    margin-top: 10px;
+}
+
+.titulo {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}

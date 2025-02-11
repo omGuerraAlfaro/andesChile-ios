@@ -93,6 +93,13 @@ export class HomePage implements OnInit {
     }
   }
 
+  goDocumentosOnline() {
+    const rut = localStorage.getItem('rutApoderado');
+    if (rut) {
+      this.router.navigate(['configuration/user/documentos-online/' + rut]);
+    }
+  }
+
   async presentAlertConfirm(header: string, message: string) {
     const alert = await this.alertController.create({
       header,
