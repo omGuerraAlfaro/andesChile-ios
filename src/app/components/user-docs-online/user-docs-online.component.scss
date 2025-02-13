@@ -6,14 +6,73 @@ ion-content.background {
     --background-size: cover;
 }
 
+p {
+    font-style: italic;
+    font-size: large;
+}
+
+/* Contenedor del botón */
+.button-container {
+    display: flex;
+    justify-content: center;
+    padding: 15px 20px;
+}
+
+/* Botón "Ver Carrito" con Neumorfismo */
+.cart-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 400px;
+    background: linear-gradient(145deg, #34a853, #2d9246);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    text-transform: none;
+    position: relative;
+}
+
+/* Efecto hover */
+.cart-button:hover {
+    transform: scale(1.05);
+}
+
+.cart-button ion-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(30%, -20%);
+}
+
+/* Texto del botón */
+.cart-text {
+    flex-grow: 1;
+    text-align: left;
+    padding-left: 10px;
+}
+
+/* Icono del botón */
+.cart-button ion-icon {
+    font-size: 24px;
+    margin-left: 10px;
+    color: white;
+}
+
+/* Grilla de los certificados */
 .certificates-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 12px;
     padding: 20px;
     justify-items: center;
 }
 
+/* Estilo de las tarjetas de certificados */
 .certificate-card {
     text-align: center;
     padding: 25px;
@@ -25,23 +84,56 @@ ion-content.background {
     align-items: center;
     justify-content: center;
     width: 90%;
-    height: 180px;
+    height: 200px;
     transition: transform 0.2s ease-in-out;
     cursor: pointer;
 }
 
+/* Efecto hover en las cards */
 .certificate-card:hover {
     transform: scale(1.08);
 }
 
-ion-icon {
+/* Iconos de los certificados */
+.icons {
     font-size: 60px;
     color: var(--ion-color-primary);
     margin-top: 10px;
 }
 
+/* Títulos dentro de las tarjetas */
 .titulo {
     font-size: 18px;
     font-weight: bold;
     text-align: center;
+}
+
+/* Botón dentro de cada card */
+.card-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 15px;
+    width: 90%;
+    background: linear-gradient(145deg, #007bff, #0063cc);
+    box-shadow: 6px 6px 10px #004a99, -6px -6px 10px #3396ff;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-transform: none;
+}
+
+/* Efecto hover en el botón */
+.card-button:hover {
+    transform: scale(1.05);
+    box-shadow: 8px 8px 12px #00407a, -8px -8px 12px #5ba8ff;
+}
+
+/* Ícono dentro del botón */
+.card-button ion-icon {
+    font-size: 20px;
+    margin-left: 8px;
+    color: white;
 }
