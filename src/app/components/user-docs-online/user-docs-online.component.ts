@@ -34,6 +34,8 @@ export class UserDocsOnlineComponent implements OnInit {
   carrito: any[] = [];
   suma: number = 0;
 
+  isLoading: boolean = false
+
   // Propiedad para certificados disponibles (pagados)
   availableCertificates: any[] = [];
 
@@ -177,6 +179,8 @@ export class UserDocsOnlineComponent implements OnInit {
         {
           text: 'Descargar',
           handler: () => {
+            this.isLoading = true;
+            this.availableModal.dismiss();
             this.pdfService.getPdfAlumnoRegular(cert, {}).subscribe({
               next: (blob) => {
                 const url = window.URL.createObjectURL(blob);
@@ -186,11 +190,14 @@ export class UserDocsOnlineComponent implements OnInit {
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
-          
+                
                 setTimeout(() => window.open(url, '_blank'), 100);
+                this.isLoading = false;
               },
               error: (error) => {
                 console.error('Error al generar el PDF', error);
+                this.availableModal.dismiss();
+                this.isLoading = false;
               }
             });
           }

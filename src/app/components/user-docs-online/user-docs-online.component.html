@@ -1,4 +1,11 @@
 <ion-content class="background">
+  
+  <div class="loading-overlay" *ngIf="isLoading">
+    <ion-backdrop></ion-backdrop>
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Generando PDF...</p>
+  </div>
+
   <ion-card style="width: 80%; margin: auto; margin-top: 20px; margin-bottom: 20px;">
     <ion-card-header>
       <h2 style="color: black;">Documentos Online</h2>
@@ -10,18 +17,18 @@
   </ion-card>
 
   <div class="button-container">
-    <!-- Botón para ver el carrito -->
-    <div class="cart-button mx-2" [class.disabled]="carrito.length === 0" (click)="openCart()">
-      <span class="cart-text">Ver Carrito</span>
-      <ion-icon style="font-size: 60px;" name="cart-outline"></ion-icon>
-      <ion-badge color="danger" *ngIf="carrito.length > 0">{{ carrito.length }}</ion-badge>
-    </div>
     <!-- Botón para ver certificados disponibles (sólo habilitado si hay data) -->
     <div class="available-button mx-2" [class.disabled]="availableCertificates.length === 0"
       (click)="availableCertificates.length > 0 && openAvailableCertificates()">
       <span class="cart-text">Ver Certificados Disponibles</span>
       <ion-icon style="font-size: 60px;" name="document-text-outline"></ion-icon>
       <ion-badge color="danger" *ngIf="availableCertificates.length > 0">{{ availableCertificates.length }}</ion-badge>
+    </div>
+    <!-- Botón para ver el carrito -->
+    <div class="cart-button mx-2" [class.disabled]="carrito.length === 0" (click)="openCart()">
+      <span class="cart-text">Ver Carrito</span>
+      <ion-icon style="font-size: 60px;" name="cart-outline"></ion-icon>
+      <ion-badge color="danger" *ngIf="carrito.length > 0">{{ carrito.length }}</ion-badge>
     </div>
   </div>
 
