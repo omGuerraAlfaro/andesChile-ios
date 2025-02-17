@@ -24,6 +24,11 @@ export class WebpayService {
     return this.http.post<WebpayResponse>(`${environment.api}/payment/initiate`, body, this.httpOptions);
   }
 
+  webpayCrearOrdenForCertificados(body: WebpayRequest): Observable<WebpayResponse> {
+    console.log(body);
+    return this.http.post<WebpayResponse>(`${environment.api}/payment/initiate/certificado`, body, this.httpOptions);
+  }
+
   confirmarTransferencia(body: confirmTransfRequest): Observable<confirmTransfRequest> {
     console.log(body);
     return this.http.post<confirmTransfRequest>(`${environment.api}/payment/confirmacionTransferencia`, body, this.httpOptions);

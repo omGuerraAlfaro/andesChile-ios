@@ -10,17 +10,25 @@
   </ion-card>
 
   <div class="button-container">
-    <!-- Se agrega (click)="openCart()" y se incluye el ion-badge -->
-    <div class="cart-button" [class.disabled]="carrito.length === 0" (click)="openCart()">
+    <!-- Botón para ver el carrito -->
+    <div class="cart-button mx-2" [class.disabled]="carrito.length === 0" (click)="openCart()">
       <span class="cart-text">Ver Carrito</span>
       <ion-icon style="font-size: 60px;" name="cart-outline"></ion-icon>
       <ion-badge color="danger" *ngIf="carrito.length > 0">{{ carrito.length }}</ion-badge>
+    </div>
+    <!-- Botón para ver certificados disponibles (sólo habilitado si hay data) -->
+    <div class="available-button mx-2" [class.disabled]="availableCertificates.length === 0"
+      (click)="availableCertificates.length > 0 && openAvailableCertificates()">
+      <span class="cart-text">Ver Certificados Disponibles</span>
+      <ion-icon style="font-size: 60px;" name="document-text-outline"></ion-icon>
+      <ion-badge color="danger" *ngIf="availableCertificates.length > 0">{{ availableCertificates.length }}</ion-badge>
     </div>
   </div>
 
   <div class="certificates-grid">
     <!-- Certificado Alumno Regular -->
-    <ion-card class="certificate-card" (click)="openCertificateModal('Certificado Alumno Regular')">
+    <ion-card class="certificate-card" [class.disabled]="!tieneCertificadoDisponible('Certificado Alumno Regular')"
+      (click)="openCertificateModal('Certificado Alumno Regular')">
       <ion-card-header>
         <ion-card-title class="titulo">Certificado Alumno Regular</ion-card-title>
       </ion-card-header>
@@ -30,7 +38,8 @@
     </ion-card>
 
     <!-- Certificado de Matrícula -->
-    <ion-card class="certificate-card" (click)="openCertificateModal('Certificado de Matrícula')">
+    <ion-card class="certificate-card" [class.disabled]="!tieneCertificadoDisponible('Certificado de Matrícula')"
+      (click)="openCertificateModal('Certificado de Matrícula')">
       <ion-card-header>
         <ion-card-title class="titulo">Certificado de Matrícula</ion-card-title>
       </ion-card-header>
@@ -40,7 +49,8 @@
     </ion-card>
 
     <!-- Certificado de Notas -->
-    <ion-card class="certificate-card" (click)="openCertificateModal('Certificado de Notas')">
+    <ion-card class="certificate-card" [class.disabled]="!tieneCertificadoDisponible('Certificado de Notas')"
+      (click)="openCertificateModal('Certificado de Notas')">
       <ion-card-header>
         <ion-card-title class="titulo">Certificado de Notas</ion-card-title>
       </ion-card-header>
@@ -50,7 +60,8 @@
     </ion-card>
 
     <!-- Certificado de Anotaciones -->
-    <ion-card class="certificate-card" (click)="openCertificateModal('Certificado de Anotaciones')">
+    <ion-card class="certificate-card" [class.disabled]="!tieneCertificadoDisponible('Certificado de Anotaciones')"
+      (click)="openCertificateModal('Certificado de Anotaciones')">
       <ion-card-header>
         <ion-card-title class="titulo">Certificado de Anotaciones</ion-card-title>
       </ion-card-header>
@@ -125,9 +136,45 @@
               <p>Estudiante: {{ item.primer_nombre_alumno }} {{ item.primer_apellido_alumno }}</p>
               <p>Valor: ${{ item.valor }}</p>
             </ion-label>
-            <!-- Botón con tres puntos que despliega la opción de eliminar -->
+            <!-- Botón con tres puntos para eliminar -->
             <ion-button fill="clear" slot="end" (click)="deleteCertificate(item)">
               <ion-icon style="font-size: x-large;" name="ellipsis-vertical"></ion-icon>
+            </ion-button>
+          </ion-item>
+        </ion-list>
+        <ion-button style="width: 85%; margin: auto; margin-top: 20px;" color="buttonLogin" color="danger" expand="block" shape="round" (click)="pagarConWebpay()">Pagar</ion-button>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
+
+  <!-- Modal para mostrar Certificados Disponibles -->
+  <ion-modal #availableModal [initialBreakpoint]="0.5" [breakpoints]="[0, 0.5, 1]">
+    <ng-template>
+      <ion-header>
+        <ion-toolbar>
+          <ion-title style="color: black;">Certificados Disponibles</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="closeAvailableModal()">Cerrar</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-item *ngFor="let cert of availableCertificates">
+            <ion-label>
+              <h2>{{ cert.certificateType }}</h2>
+              <p>
+                Alumno:
+                {{ cert.primerNombreAlumno }}
+                {{ cert.segundoNombreAlumno }}
+                {{ cert.primerApellidoAlumno }}
+                {{ cert.segundoApellidoAlumno }}
+              </p>
+              <p>Fecha de creación: {{ cert.createdAt | date:'short' }}</p>
+              <p>Estado: {{ cert.isValid ? 'Validado' : 'No Validado' }}</p>
+            </ion-label>
+            <ion-button fill="clear" slot="end" (click)="downloadCertificate(cert.validationCode)">
+              <ion-icon style="font-size: x-large;" name="download"></ion-icon>
             </ion-button>
           </ion-item>
         </ion-list>

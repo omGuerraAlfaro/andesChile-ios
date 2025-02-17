@@ -50,6 +50,7 @@ export interface ICurso {
 export interface EstudianteConBoletas {
     estudiante: IEstudiante;
     boletas: BoletaDetalle[];
+    curso: ICurso[];
 }
 
 
