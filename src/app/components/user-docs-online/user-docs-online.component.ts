@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IonModal, AlertController, MenuController } from '@ionic/angular';
 import { firstValueFrom } from 'rxjs';
 import { Browser } from '@capacitor/browser';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
 
 import { InfoApoderadoService } from 'src/app/services/apoderadoService/infoApoderado.service';
 import { EstudianteService } from 'src/app/services/estudianteService/estudiante.service';
@@ -10,6 +11,8 @@ import { IEstudiante } from 'src/interfaces/apoderadoInterface';
 import { WebpayService } from 'src/app/services/paymentService/webpay.service';
 import { CertificadosService } from 'src/app/services/certificadoService/certificados.service';
 import { PdfgeneratorService } from 'src/app/services/pdfGeneratorService/pdf-generator.service';
+import { HttpClient } from '@angular/common/http';
+import { FileOpener, FileOpenerOptions } from '@capacitor-community/file-opener';
 
 interface WebpayResponse {
   url: string;
@@ -48,6 +51,7 @@ export class UserDocsOnlineComponent implements OnInit {
     private certificadoService: CertificadosService,
     private pdfService: PdfgeneratorService,
     private router: Router,
+    private http: HttpClient,
     private menuCtrl: MenuController
   ) { }
 
@@ -170,33 +174,60 @@ export class UserDocsOnlineComponent implements OnInit {
   async downloadCertificate(cert: any) {
     const alert = await this.alertController.create({
       header: 'Descargar certificado',
-      message: '¿Desea descargar este certificado certificado?',
+      message: '¿Desea descargar este certificado?',
       buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel'
-        },
+        { text: 'Cancelar', role: 'cancel' },
         {
           text: 'Descargar',
-          handler: () => {
+          handler: async () => {
             this.isLoading = true;
             this.availableModal.dismiss();
+
             this.pdfService.getPdfAlumnoRegular(cert, {}).subscribe({
-              next: (blob) => {
-                const url = window.URL.createObjectURL(blob);
-                const link = document.createElement('a');
-                link.href = url;
-                link.download = `certificado.pdf`;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                
-                setTimeout(() => window.open(url, '_blank'), 100);
-                this.isLoading = false;
+              next: async (pdfBlob) => {
+                if (!pdfBlob || !(pdfBlob instanceof Blob)) {
+                  console.error('❌ Respuesta inválida. Se esperaba un Blob:', pdfBlob);
+                  this.isLoading = false;
+                  return;
+                }
+                console.log('✅ PDF recibido correctamente');
+                try {
+                  const fileName = `certificado_${new Date().getTime()}.pdf`;
+
+                  // Convertir Blob a Base64
+                  const base64data = await this.convertBlobToBase64(pdfBlob);
+
+                  // Guardar el archivo usando el plugin Filesystem
+                  await Filesystem.writeFile({
+                    path: fileName,
+                    data: base64data,
+                    directory: Directory.Documents,
+                  });
+
+                  // Obtener la URI del archivo guardado
+                  const fileUri = await Filesystem.getUri({
+                    directory: Directory.Documents,
+                    path: fileName,
+                  });
+
+                  console.log('📂 Archivo guardado en:', fileUri.uri);
+
+                  // Abrir el archivo en el visor de PDF del dispositivo
+                  // await Browser.open({ url: fileUri.uri });
+                  const fileOpenerOptions: FileOpenerOptions = {
+                    filePath: fileUri.uri,
+                    contentType: 'application/pdf',
+                    openWithDefault: true,
+                  };
+                  await FileOpener.open(fileOpenerOptions);
+                } catch (error) {
+                  console.error('❌ Error al guardar el archivo:', error);
+                } finally {
+                  this.isLoading = false;
+                }
               },
               error: (error) => {
-                console.error('Error al generar el PDF', error);
-                this.availableModal.dismiss();
+                console.error('❌ Error al descargar el PDF', error);
                 this.isLoading = false;
               }
             });
@@ -205,6 +236,21 @@ export class UserDocsOnlineComponent implements OnInit {
       ]
     });
     await alert.present();
+  }
+
+  private convertBlobToBase64(blob: Blob): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onerror = reject;
+      reader.onload = () => {
+        // reader.result incluye el prefijo "data:application/pdf;base64,"
+        // Separamos y devolvemos solo la parte base64
+        const dataUrl = reader.result as string;
+        const base64 = dataUrl.split(',')[1];
+        resolve(base64);
+      };
+      reader.readAsDataURL(blob);
+    });
   }
 
   closeCart() {
