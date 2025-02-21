@@ -24,6 +24,7 @@ export class LoginPage {
   };
 
   userData!: IUser;
+  passwordType: string = 'password';
 
   constructor(
     private router: Router,
@@ -128,4 +129,7 @@ export class LoginPage {
     this.isOpen = true;
   }
 
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+  }
 }

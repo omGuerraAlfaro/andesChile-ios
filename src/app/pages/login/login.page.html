@@ -12,7 +12,7 @@
   <!-- Botón de Sobre la APP -->
   <button id="open-about-modal" class="custom-button blue-button">Sobre la APP</button>
 
-  <p class="text-center">Versión 2.0</p>
+  <p class="text-center">Versión 2.4.2</p>
 
 
   <!-- Modal containing only the login form -->
@@ -24,12 +24,16 @@
         </ion-card-header>
         <ion-card class="cardFondo">
           <ion-card-content>
+            
             <ion-item lines="none">
-              <ion-input placeholder="Ingresa tu usuario aquí" type="text" [(ngModel)]="user.usuario"></ion-input>
+              <ion-input placeholder="Ingresa tu usuario aquí" type="text" class="custom-input" [(ngModel)]="user.usuario"></ion-input>
             </ion-item>
+
             <ion-item lines="none">
-              <ion-input placeholder="Ingresa tu contraseña aquí" type="password" [(ngModel)]="user.password"
-                minlength="8" maxlength="6"></ion-input>
+              <ion-input [type]="passwordType" placeholder="Ingresa tu contraseña aquí" type="password" [(ngModel)]="user.password"
+                minlength="8" maxlength="6" class="custom-input"></ion-input>
+                <ion-icon [name]="passwordType === 'password' ? 'eye-off' : 'eye'" (click)="togglePasswordVisibility()" class="eye-icon">
+                </ion-icon>
             </ion-item>
 
             <ion-row>
